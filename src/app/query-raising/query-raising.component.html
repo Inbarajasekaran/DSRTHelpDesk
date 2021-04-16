@@ -1,0 +1,28 @@
+<div [formGroup]="validateForm" style="height:750px; border: 2px solid rgb(202, 202, 202); 
+padding: 15px; pointer-events: all !important" class="ant-modal">
+
+    <div style="font-size: 18px; margin-top:2vh; margin:12px; padding: 12px; background-color: #007BFF;">
+        <h2 style="text-align:center; color:white;">Query Raising</h2>
+    </div>
+
+    <div style="text-align: center; margin-top:100px; margin-bottom:100px; padding:12px; font-size:18px;">
+
+        <h1 style="font-size: 28px;">DSRT Help-Desk</h1>
+
+        <div style="padding: 15px;">
+            <nz-select formControlName="masterOptions" nzShowSearch nzAllowClear nzPlaceHolder="Select"
+                style="width: 200px;" [(ngModel)]="selectedTitle" (ngModelChange)="getSubTitle()">
+                <nz-option [nzLabel]="data.masterTitle" [nzValue]="data.masterId"
+                    *ngFor="let data of dataSet; let i = index">
+                </nz-option>
+            </nz-select>
+
+            <nz-select formControlName="masterSubTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
+                style="width: 200px;" [(ngModel)]="selectedSubTitle"
+                *ngIf="validateForm.controls.masterOptions.value != null">
+                <nz-option *ngFor="let subTitle of dataSetSubTitle" [nzLabel]="subTitle.subTitle"
+                    [nzValue]="subTitle.id"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+</div>
