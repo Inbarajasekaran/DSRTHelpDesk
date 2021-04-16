@@ -8,11 +8,12 @@ import { FormBuilder, FormControl, FormGroup, RequiredValidator, ValidationError
   styleUrls: ['./query-raising.component.css']
 })
 export class QueryRaisingComponent implements OnInit {
-  isVisible = false;
   validateForm: FormGroup;
+  modalForm: FormGroup;
   selectedTitle;
   selectedSubTitle;
   dataSetSubTitle = [];
+  modalVisible = false
   dataSet = [
     {
       masterTitle: "ERP Related Query",
@@ -47,17 +48,16 @@ export class QueryRaisingComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder) { }
-
-  submitForm() {
-
-  }
+  constructor(private fb: FormBuilder, private modalFormBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       masterOptions: ['', Validators.required],
       masterSubTitle: ['', Validators.required],
     });
+    this.modalForm = this.modalFormBuilder.group({
+      issueModal: ['', Validators.required]
+    })
   }
 
   getSubTitle() {
@@ -71,10 +71,27 @@ export class QueryRaisingComponent implements OnInit {
 
   }
 
-  uploadIssue() {
+  raiseIssue() {
+    this.modalVisible = true;
     console.log(this.validateForm.controls.masterOptions.value);
     console.log(this.validateForm.controls.masterSubTitle.value);
   }
+
+  handleOk() {
+    console.log(this.modalForm.controls.issueModal.valid);
+    if (this.modalForm.valid) {
+      this.modalVisible = false;
+    }
+  }
+
+  handleCancel() {
+    this.modalVisible = false;
+  }
+
+  submitModal() {
+
+  }
+
 
 }
 

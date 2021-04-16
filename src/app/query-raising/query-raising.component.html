@@ -25,8 +25,18 @@ padding: 15px; pointer-events: all !important" class="ant-modal">
             </nz-select>
         </div>
         <div>
-            <button nz-button style="margin-top:45px;" nzType="primary" [disabled]="validateForm.invalid"
-            nzSize="large" (click)="uploadIssue()">Upload issue</button>
+            <button nz-button style="margin-top:45px;" nzType="primary" [disabled]="validateForm.invalid" nzSize="large"
+                (click)="raiseIssue()">Raise Issue</button>
+
+            <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="The first Modal"
+                (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                <form nz-form [formGroup]="modalForm" (ngSubmit)="submitModal()">
+                    <ng-container *nzModalContent>
+                        <textarea rows="4" nz-input placeholder="Your Issue Comment" formControlName="issueModal"
+                            nzAutosize nzRequired></textarea>
+                    </ng-container>
+                </form>
+            </nz-modal>
         </div>
     </div>
 </div>
