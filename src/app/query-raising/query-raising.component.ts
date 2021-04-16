@@ -46,21 +46,21 @@ export class QueryRaisingComponent implements OnInit {
       subTitles: []
     }
   ];
- 
+
   constructor(private fb: FormBuilder) { }
 
   submitForm() {
-    
+
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      masterOptions: [''],
-      masterSubTitle: [''],
+      masterOptions: ['', Validators.required],
+      masterSubTitle: ['', Validators.required],
     });
   }
 
-  getSubTitle(){
+  getSubTitle() {
     this.dataSetSubTitle = []
     this.validateForm.controls.masterSubTitle.setValue(null);
     for (const data of this.dataSet) {
@@ -68,10 +68,10 @@ export class QueryRaisingComponent implements OnInit {
         this.dataSetSubTitle = data['subTitles']
       }
     }
-    
+
   }
 
-  uploadIssue(){
+  uploadIssue() {
     console.log(this.validateForm.controls.masterOptions.value);
     console.log(this.validateForm.controls.masterSubTitle.value);
   }
