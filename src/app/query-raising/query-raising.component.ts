@@ -12,7 +12,6 @@ export class QueryRaisingComponent implements OnInit {
   validateForm: FormGroup;
   selectedTitle;
   selectedSubTitle;
-  buttonLoading = false;
   dataSetSubTitle = [];
   dataSet = [
     {
@@ -57,7 +56,7 @@ export class QueryRaisingComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       masterOptions: [''],
-      masterSubTitle: ['']
+      masterSubTitle: [''],
     });
   }
 
@@ -72,11 +71,9 @@ export class QueryRaisingComponent implements OnInit {
     
   }
 
-  loadOnClick(){
-    this.buttonLoading = true;
-    setTimeout(() => {
-      this.buttonLoading = false;
-    }, 1500);
+  uploadIssue(){
+    console.log(this.validateForm.controls.masterOptions.value);
+    console.log(this.validateForm.controls.masterSubTitle.value);
   }
 
 }
