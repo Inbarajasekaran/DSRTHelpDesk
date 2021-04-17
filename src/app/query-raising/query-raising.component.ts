@@ -89,7 +89,7 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   submitModal() {
-
+    console.log("SUBMIT")
   }
 
 
