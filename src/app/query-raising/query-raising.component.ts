@@ -68,20 +68,19 @@ export class QueryRaisingComponent implements OnInit {
         this.dataSetSubTitle = data['subTitles']
       }
     }
-
   }
 
   raiseIssue() {
     this.modalVisible = true;
-    console.log(this.validateForm.controls.masterOptions.value);
-    console.log(this.validateForm.controls.masterSubTitle.value);
   }
 
   handleOk() {
-    console.log(this.modalForm.controls.issueModal.valid);
     if (this.modalForm.valid) {
       this.modalVisible = false;
     }
+    this.validateForm.controls.masterOptions.setValue(null)
+    this.validateForm.controls.masterSubTitle.setValue(null)
+    this.modalForm.controls.issueModal.setValue(null)
   }
 
   handleCancel() {
@@ -89,7 +88,7 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   submitModal() {
-    console.log("SUBMIT")
+    console.log("SUBMIT");
   }
 
 

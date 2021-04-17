@@ -24,11 +24,12 @@ padding: 15px; pointer-events: all !important">
                     [nzValue]="subTitle.id"></nz-option>
             </nz-select>
         </div>
+
         <div>
             <button nz-button style="margin-top:45px;" nzType="primary" [disabled]="validateForm.invalid" nzSize="large"
                 (click)="raiseIssue()">Raise Issue</button>
 
-            <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="The first Modal"
+            <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
                 (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
                 <form nz-form [formGroup]="modalForm" (ngSubmit)="submitModal()">
                     <ng-container *nzModalContent>
@@ -38,5 +39,7 @@ padding: 15px; pointer-events: all !important">
                 </form>
             </nz-modal>
         </div>
+
     </div>
+
 </div>
