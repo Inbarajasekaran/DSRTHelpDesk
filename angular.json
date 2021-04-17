@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "DSRTHelpDesk"
+  "defaultProject": "DSRTHelpDesk",
+  "cli": {
+    "analytics": false
+  }
 }
