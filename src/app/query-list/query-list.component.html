@@ -1,0 +1,29 @@
+<div style="margin: 25px; height:500px; border: 2px solid rgb(202, 202, 202); 
+padding: 15px; pointer-events: all !important">
+
+    <div style="font-size: 18px; margin-top:2vh; margin:12px; padding: 12px; background-color: #007BFF;">
+        <h2 style="text-align:center; color:white;">Query List</h2>
+    </div>
+
+    <div style="margin:20px; padding:12px; font-size:18px;">
+        <nz-table #headerTable [nzData]="dataSet" [nzPageSize]="50" [nzScroll]="{ y: '240px' }">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of headerTable.data; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ data.issue }}</td>
+                    <td>{{ data.status }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    
+   
+</div>
+<a class="ant-col-lg-offset-20" routerLink="">Query Raising</a>

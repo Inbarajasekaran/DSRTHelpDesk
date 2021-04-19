@@ -22,14 +22,22 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { QueryListComponent } from './query-list/query-list.component';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
 
 registerLocaleData(en);
+
+const ngZorroConfig: NzConfig = {
+  message: { nzTop: '90vh' },
+  notification: { nzTop: '90vh' }
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     QueryRaisingComponent,
-    
+    QueryListComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,8 +56,13 @@ registerLocaleData(en);
     NzGridModule,
     NzSelectModule,
     NzButtonModule,
+    NzMessageModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_CONFIG, useValue: ngZorroConfig }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

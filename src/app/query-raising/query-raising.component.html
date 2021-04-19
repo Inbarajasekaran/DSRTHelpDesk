@@ -10,14 +10,14 @@ padding: 15px; pointer-events: all !important">
         <h1 style="font-size: 28px;">DSRT Help-Desk</h1>
 
         <div style="padding: 15px;">
-            <nz-select formControlName="masterOptions" nzShowSearch nzAllowClear nzPlaceHolder="Select" nzSize="large"
-                style=" width: 200px;" [(ngModel)]="selectedTitle" (ngModelChange)="getSubTitle()">
+            <nz-select class="ant-col" formControlName="masterOptions" nzShowSearch nzAllowClear nzPlaceHolder="Select"
+                nzSize="large" style="width: 200px;" [(ngModel)]="selectedTitle" (ngModelChange)="getSubTitle()">
                 <nz-option [nzLabel]="data.masterTitle" [nzValue]="data.masterId"
                     *ngFor="let data of dataSet; let i = index">
                 </nz-option>
             </nz-select>
 
-            <nz-select formControlName="masterSubTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
+            <nz-select class="ant-col" formControlName="masterSubTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
                 style="width: 200px;" [(ngModel)]="selectedSubTitle" nzSize="large"
                 *ngIf="validateForm.controls.masterOptions.value != null">
                 <nz-option *ngFor="let subTitle of dataSetSubTitle" [nzLabel]="subTitle.subTitle"
@@ -26,20 +26,24 @@ padding: 15px; pointer-events: all !important">
         </div>
 
         <div>
-            <button nz-button style="margin-top:45px;" nzType="primary" [disabled]="validateForm.invalid" nzSize="large"
-                (click)="raiseIssue()">Raise Issue</button>
+            <button class="ant-btn-round ant-row-center" nz-button style="margin-top:45px;" nzType="primary"
+                [disabled]="validateForm.invalid" nzSize="large" (click)="raiseIssue()">Raise Issue</button>
 
             <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
                 (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
                 <form nz-form [formGroup]="modalForm" (ngSubmit)="submitModal()">
-                    <ng-container *nzModalContent>
-                        <textarea rows="4" nz-input placeholder="Your Issue Comment" formControlName="issueModal"
-                            nzAutosize nzRequired></textarea>
-                    </ng-container>
+                    <!-- <ng-container *nzModalContent> -->
+                    <nz-form-item *nzModalContent>
+                        <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The comment is required">
+                            <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
+                                id="comment" nzAutosize nzRequired></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <!-- </ng-container> -->
                 </form>
             </nz-modal>
         </div>
 
     </div>
-
+    <a class="ant-col-lg-offset-20" routerLink="/queryList">Query List</a>
 </div>

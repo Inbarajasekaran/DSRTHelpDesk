@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, RequiredValidator, ValidationErrors, Validators } from '@angular/forms';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-query-raising',
@@ -14,6 +15,7 @@ export class QueryRaisingComponent implements OnInit {
   selectedSubTitle;
   dataSetSubTitle = [];
   modalVisible = false
+  issue: string
   dataSet = [
     {
       masterTitle: "ERP Related Query",
@@ -48,7 +50,10 @@ export class QueryRaisingComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder, private modalFormBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private modalFormBuilder: FormBuilder,
+    private message: NzMessageService,
+    private apiService: ApiServiceService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -78,19 +83,29 @@ export class QueryRaisingComponent implements OnInit {
     if (this.modalForm.valid) {
       this.modalVisible = false;
     }
-    this.validateForm.controls.masterOptions.setValue(null)
-    this.validateForm.controls.masterSubTitle.setValue(null)
-    this.modalForm.controls.issueModal.setValue(null)
+    console.log(this.validateForm.controls.masterOptions.value)
+    console.log(this.validateForm.controls.masterSubTitle.value)
+    // console.log(this.modalForm.controls.issueModal.value)
+    this.issue = this.modalForm.controls.issueModal.value;
+    this.apiService.issues.push({
+      userid: 1,
+      issue: this.issue,
+      status: this.apiService.ISSUE_STATUS[0]['STATUS']
+    });
+    //console.log(this.apiService.issues)
+    this.validateForm.reset();
+    this.modalForm.reset();
+    this.message.info('Noted..We are tracking your issue.!');
   }
 
   handleCancel() {
+    this.modalForm.reset();
     this.modalVisible = false;
   }
 
   submitModal() {
     console.log("SUBMIT");
   }
-
 
 }
 
