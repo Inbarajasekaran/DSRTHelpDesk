@@ -16,6 +16,7 @@ export class QueryRaisingComponent implements OnInit {
   dataSetSubTitle = [];
   modalVisible = false
   issue: string
+  selectFile = null; 
   dataSet = [
     {
       masterTitle: "ERP Related Query",
@@ -65,7 +66,7 @@ export class QueryRaisingComponent implements OnInit {
     })
   }
 
-  getSubTitle() {
+  getMasterSubTitle() {
     this.dataSetSubTitle = []
     this.validateForm.controls.masterSubTitle.setValue(null);
     for (const data of this.dataSet) {
@@ -107,4 +108,11 @@ export class QueryRaisingComponent implements OnInit {
     console.log("SUBMIT");
   }
 
+  onFileAdded(event){
+    this.selectFile = event.target.files[0];
+    console.log(this.selectFile)
+  }
+  onUpload(){
+  console.log("sucess")
+  }
 }
