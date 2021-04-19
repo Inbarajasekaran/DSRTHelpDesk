@@ -108,4 +108,3 @@ export class QueryRaisingComponent implements OnInit {
   }
 
 }
-
