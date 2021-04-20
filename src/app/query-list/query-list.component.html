@@ -15,7 +15,7 @@ padding: 15px; pointer-events: all !important">
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of headerTable.data; let i = index">
+                <tr *ngFor="let data of headerTable.data; let i = index" (click)="dataClick(data)" >
                     <td>{{ i+1 }}</td>
                     <td>{{ data.issue }}</td>
                     <td>{{ data.status }}</td>

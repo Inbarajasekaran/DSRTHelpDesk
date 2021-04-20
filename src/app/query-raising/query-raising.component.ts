@@ -109,7 +109,7 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   onFileAdded(event){
-    this.selectFile = event.target.files[0];
+    this.selectFile = event.target.files[0]
     console.log(this.selectFile)
   }
   onUpload(){

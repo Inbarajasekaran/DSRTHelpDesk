@@ -32,10 +32,13 @@ export class QueryListComponent implements OnInit {
   ngOnInit(): void {
     this.dataGet();
   }
+
   dataGet() {
     this.dataSet = this.apiService.issues;
     // console.log(this.dataSet)
   }
-
+  dataClick(data){
+    alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
+  }
 
 }
