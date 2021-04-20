@@ -14,10 +14,18 @@ export class ApiServiceService {
   constructor() { }
 
   issues = [
-    // { userid: undefined,
-    //   issue: "ISSUE NAME",
-    //  status: this.ISSUE_STATUS[0].STATUS,
-    // image: '' }
+    {
+      userid: undefined,
+      issue: "ISSUE NAME",
+      status: this.ISSUE_STATUS[0].STATUS,
+      image: 'url'
+    },
+    {
+      userid: undefined,
+      issue: "ISSUE NAME",
+      status: this.ISSUE_STATUS[0].STATUS,
+      image: 'url'
+    }
   ]
 
 }
