@@ -17,6 +17,7 @@ export class QueryRaisingComponent implements OnInit {
   modalVisible = false
   issue: string
   selectFile = null; 
+  image = null;
   dataSet = [
     {
       masterTitle: "ERP Related Query",
@@ -62,7 +63,8 @@ export class QueryRaisingComponent implements OnInit {
       masterSubTitle: ['', Validators.required],
     });
     this.modalForm = this.modalFormBuilder.group({
-      issueModal: ['', Validators.required]
+      issueModal: ['', Validators.required],
+      attachImage: ['']
     })
   }
 
@@ -88,10 +90,13 @@ export class QueryRaisingComponent implements OnInit {
     console.log(this.validateForm.controls.masterSubTitle.value)
     // console.log(this.modalForm.controls.issueModal.value)
     this.issue = this.modalForm.controls.issueModal.value;
+    this.image = this.modalForm.controls.attachImage.value;
+    // console.log(this.image)
     this.apiService.issues.push({
       userid: 1,
       issue: this.issue,
-      status: this.apiService.ISSUE_STATUS[0]['STATUS']
+      status: this.apiService.ISSUE_STATUS[0]['STATUS'],
+      image: this.image,
     });
     //console.log(this.apiService.issues)
     this.validateForm.reset();
@@ -113,6 +118,6 @@ export class QueryRaisingComponent implements OnInit {
     console.log(this.selectFile)
   }
   onUpload(){
-  console.log("sucess")
+
   }
 }

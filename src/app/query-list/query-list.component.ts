@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-query-list',
@@ -7,8 +8,10 @@ import { ApiServiceService } from '../api-service.service';
   styleUrls: ['./query-list.component.css']
 })
 export class QueryListComponent implements OnInit {
+  
+  isVisible = false;
 
-  constructor(private apiService: ApiServiceService) {
+  constructor(private apiService: ApiServiceService, private modalService: NzModalService) {
 
   }
 
@@ -38,7 +41,29 @@ export class QueryListComponent implements OnInit {
     // console.log(this.dataSet)
   }
   dataClick(data){
-    alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
+    this.isVisible = true;
+    // alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
+  }
+
+  // showModal(): void {
+  //   this.isVisible = true;
+  // }
+
+  handleOk(): void {
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+
+  showConfirm(): void {
+    this.modalService.confirm({
+      nzTitle: 'Confirm',
+      nzContent: 'Bla bla ...',
+      nzOkText: 'OK',
+      nzCancelText: 'Cancel'
+    });
   }
 
 }

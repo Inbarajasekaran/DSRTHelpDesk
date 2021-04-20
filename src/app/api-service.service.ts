@@ -6,13 +6,18 @@ import { Injectable } from '@angular/core';
 export class ApiServiceService {
 
   ISSUE_STATUS = [
-    {STATUS_ID: 1, STATUS: 'Pending'},
-    {STATUS_ID: 2, STATUS: 'Processing'},
-    {STATUS_ID: 3, STATUS: 'Completed'}
+    { STATUS_ID: 1, STATUS: 'Pending' },
+    { STATUS_ID: 2, STATUS: 'Processing' },
+    { STATUS_ID: 3, STATUS: 'Completed' }
   ];
 
-  constructor() {  }
+  constructor() { }
 
-  issues = []
+  issues = [
+    // { userid: undefined,
+    //   issue: "ISSUE NAME",
+    //  status: this.ISSUE_STATUS[0].STATUS,
+    // image: '' }
+  ]
 
 }

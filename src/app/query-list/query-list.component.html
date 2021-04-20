@@ -15,15 +15,28 @@ padding: 15px; pointer-events: all !important">
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of headerTable.data; let i = index" (click)="dataClick(data)" >
+                <tr *ngFor="let data of headerTable.data; let i = index" (click)="dataClick(data)">
                     <td>{{ i+1 }}</td>
                     <td>{{ data.issue }}</td>
                     <td>{{ data.status }}</td>
                 </tr>
+                <div>
+                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Modal" nzOkText="Ok" nzCancelText="Cancel"
+                        (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                        <ng-container *nzModalContent>
+                            <div *ngFor="let data of headerTable.data;">
+                                <p> Issue Name: {{data.issue}} <br>
+                                    Issue Status: {{data.status}} <br>
+                                    Image: {{data.image}} </p>
+                            </div>
+                        </ng-container>
+                    </nz-modal>
+                </div>
             </tbody>
         </nz-table>
+
     </div>
-    
-   
+
+
 </div>
 <a class="ant-col-lg-offset-20" routerLink="">Re-direct</a>
