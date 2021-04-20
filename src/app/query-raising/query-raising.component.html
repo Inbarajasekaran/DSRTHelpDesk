@@ -11,7 +11,7 @@ padding: 15px; pointer-events: all !important">
 
         <div style="padding: 15px;">
             <nz-select class="ant-col" formControlName="masterOptions" nzShowSearch nzAllowClear nzPlaceHolder="Select"
-                nzSize="large" style="width: 200px;" [(ngModel)]="selectedTitle" (ngModelChange)="getSubTitle()">
+                nzSize="large" style="width: 200px;" [(ngModel)]="selectedTitle" (ngModelChange)="getMasterSubTitle()">
                 <nz-option [nzLabel]="data.masterTitle" [nzValue]="data.masterId"
                     *ngFor="let data of dataSet; let i = index">
                 </nz-option>
@@ -38,6 +38,9 @@ padding: 15px; pointer-events: all !important">
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
                                 id="comment" nzAutosize nzRequired></textarea>
                         </nz-form-control>
+                        <span style="margin-top: 50px;">
+                        <input type = "file" (change) = "onFileAdded($event)" (click)="onUpload()" >
+                        </span>
                     </nz-form-item>
                     <!-- </ng-container> -->
                 </form>
