@@ -1,0 +1,31 @@
+<div class="ant-modal" style="width:650px; height:500px; background-color: #fbfbfb; box-shadow: 5px 5px 10px#d4d4d4; display: flex; 
+    justify-content: center; pointer-events: all !important">
+    <div nz-row style="display: flex; justify-content: center; padding-top:130px;">
+        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your username!">
+                    <nz-input-group nzPrefixIcon="user" style="height:40px;">
+                        <input type="text" nz-input formControlName="userName"
+                            placeholder="Username" nzSize="large" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your Password!">
+                    <nz-input-group nzPrefixIcon="lock" style="height:40px;">
+                        <input type="password" nz-input formControlName="password" placeholder="Password"
+                            nzSize="large" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <!-- <div nz-row class="login-form-margin">
+                <div nz-col>
+                    <a class="login-form-forgot">Forgot password</a>
+                </div>
+            </div> -->
+            <button nz-button style="height: 35px;" class="login-form-button login-form-margin"
+             [nzType]="'primary'">
+                Login</button>
+        </form>
+    </div>
+</div>

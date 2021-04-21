@@ -25,6 +25,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { QueryListComponent } from './query-list/query-list.component';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(en);
 
@@ -38,6 +39,7 @@ const ngZorroConfig: NzConfig = {
     AppComponent,
     QueryRaisingComponent,
     QueryListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
