@@ -1,11 +1,7 @@
-.login-form {
+  .login-form {
     width: 300px;
   }
-
-  .login-form-margin {
-    margin-bottom: 16px;
-  }
-
+  
   .login-form-forgot {
     float: right;
   }
@@ -14,9 +10,53 @@
     width: 100%;
   }
 
+  .side-flex {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px; 
+    width:30%;
+    background-color:#1890ff;
+  }
+
+  .form-div {
+    align-content: center;
+  }
+
+  .main-div {
+    padding:0px; 
+    width:650px; 
+    height:500px; 
+    background-color: #fbfbfb; 
+    box-shadow: 5px 5px 10px#d4d4d4; 
+    display: flex;
+    pointer-events: all !important
+  }
+
   @media only screen and (max-width: 312px)  {
     *{
     width: 170px;
     }
   }
- 
+  
+ @media only screen and (max-width:768px){
+   .side-flex {
+     width: 100% !important;
+   }
+   .main-div {
+    display: block !important;
+    
+   }
+   .form-div {
+     padding-top:50px !important;
+     width:100% !important;
+   }
+   .button-class{
+     width:55px !important;
+     padding: 0% !important;
+   }
+   .login-form {
+      width: 70% !important;
+    }
+ }
