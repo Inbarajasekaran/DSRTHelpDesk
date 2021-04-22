@@ -71,7 +71,7 @@ export class QueryRaisingComponent implements OnInit {
       masterTitle: "Exam Result issue",
       type: 2,
       masterId: 4,
-      subTitles: [ {
+      subTitles: [{
         id: 1,
         masterId: 4,
         subTitle: "Can't check result"
@@ -81,7 +81,7 @@ export class QueryRaisingComponent implements OnInit {
         masterId: 4,
         subTitle: "Not showing my result"
       },
-    ]
+      ]
     },
     {
       masterTitle: "Mark Entry issue",
@@ -98,11 +98,11 @@ export class QueryRaisingComponent implements OnInit {
     private modalFormBuilder: FormBuilder,
     private message: NzMessageService,
     private apiService: ApiServiceService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      masterOptions: [null, Validators.required],
+      masterTitle: [null, Validators.required],
       masterSubTitle: [null, Validators.required],
       ticketType: [null, Validators.required],
     });
@@ -114,26 +114,26 @@ export class QueryRaisingComponent implements OnInit {
 
   getMasterOption() {
     this.dataSetMasterTitle = []
-    this.validateForm.controls.masterOptions.setValue(null);
-    console.log(this.validateForm.controls.ticketType.value);
+    this.validateForm.controls.masterTitle.setValue(null);
+    //console.log(this.validateForm.controls.ticketType.value);
     for (const variable of this.dataSet) {
       if (this.validateForm.controls.ticketType.value == variable['type']) {
         // console.log(variable);
         this.dataSetMasterTitle.push(variable)
       }
     }
-    console.log(this.dataSetMasterTitle);
+    //console.log(this.dataSetMasterTitle);
   }
 
   getMasterSubTitle() {
     this.dataSetSubTitle = []
     this.validateForm.controls.masterSubTitle.setValue(null);
     for (const data of this.dataSet) {
-      if (data['masterId'] == this.validateForm.controls.masterOptions.value) {
+      if (data['masterId'] == this.validateForm.controls.masterTitle.value) {
         this.dataSetSubTitle = data['subTitles']
       }
     }
-
+    //console.log(this.dataSetSubTitle);
   }
 
   raiseIssue() {
@@ -144,9 +144,6 @@ export class QueryRaisingComponent implements OnInit {
     if (this.modalForm.valid) {
       this.modalVisible = false;
     }
-    console.log(this.validateForm.controls.masterOptions.value)
-    console.log(this.validateForm.controls.masterSubTitle.value)
-    // console.log(this.modalForm.controls.issueModal.value)
     this.issue = this.modalForm.controls.issueModal.value;
     this.image = this.modalForm.controls.attachImage.value;
     // console.log(this.image)
@@ -156,6 +153,10 @@ export class QueryRaisingComponent implements OnInit {
       status: this.apiService.ISSUE_STATUS[0]['STATUS'],
       image: this.image,
     });
+    console.log("Ticket value is: " + this.validateForm.controls.ticketType.value,
+      "Master title is: " + this.validateForm.controls.masterTitle.value,
+      "SubTitle is : " + this.validateForm.controls.masterSubTitle.value);
+    console.log(this.modalForm.controls.issueModal.value);
     //console.log(this.apiService.issues)
     this.validateForm.reset();
     this.modalForm.reset();
@@ -177,6 +178,5 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   onUpload() {
-
   }
 }

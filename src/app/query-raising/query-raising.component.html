@@ -16,7 +16,7 @@
                 </nz-option>
             </nz-select>
 
-            <nz-select class="ant-col" formControlName="masterOptions" nzShowSearch nzAllowClear nzPlaceHolder="Select"
+            <nz-select class="ant-col" formControlName="masterTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
                 nzSize="large" style="width: 200px;" (ngModelChange)="getMasterSubTitle()" 
                     *ngIf="validateForm.controls.ticketType.value != null">
                 <nz-option [nzLabel]="data.masterTitle" [nzValue]="data.masterId"
@@ -26,7 +26,7 @@
 
             <nz-select class="ant-col" formControlName="masterSubTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
                 style="width: 200px;" nzSize="large"
-                *ngIf="validateForm.controls.masterOptions.value != null">
+                *ngIf="validateForm.controls.masterTitle.value != null">
                 <nz-option *ngFor="let subTitle of dataSetSubTitle" [nzLabel]="subTitle.subTitle"
                     [nzValue]="subTitle.id"></nz-option>
             </nz-select>
@@ -46,7 +46,7 @@
                                 id="comment" nzAutosize nzRequired></textarea>
                             <div style="margin-top: 50px;">
                                 <input type="file" (change)="onFileAdded($event)" (click)="onUpload()"
-                                    accept="image/x-png,image/gif,image/jpeg" formControlName="attachImage">
+                                    accept="image/x-png,image/gif,image/jpeg" formControlName="attachImage" multiple>
                             </div>
                         </nz-form-control>
 
