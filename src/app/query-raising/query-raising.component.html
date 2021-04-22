@@ -45,8 +45,9 @@
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
                                 id="comment" nzAutosize nzRequired></textarea>
                             <div style="margin-top: 50px;">
-                                <input type="file" (change)="onFileAdded($event)" (click)="onUpload()"
-                                    accept="image/x-png,image/gif,image/jpeg" formControlName="attachImage" multiple>
+                                <input type="file" id="file" (change)="getFileDetails($event)" (click)="onUpload()" 
+                                 formControlName="attachImage" multiple>
+                                 <p>{{selectFile}}</p>
                             </div>
                         </nz-form-control>
 

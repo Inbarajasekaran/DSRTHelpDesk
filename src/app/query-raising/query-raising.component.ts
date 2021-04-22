@@ -18,8 +18,8 @@ export class QueryRaisingComponent implements OnInit {
   dataSetMasterTitle = [];
   modalVisible = false
   issue: string
-  selectFile = null;
-  image = null;
+  selectFile:string [] = [];
+  image = [];   
 
   ticketType = [
     {
@@ -172,8 +172,11 @@ export class QueryRaisingComponent implements OnInit {
     console.log("SUBMIT");
   }
 
-  onFileAdded(event) {
-    this.selectFile = event.target.files[0]
+  getFileDetails (e) {
+    //console.log (e.target.files);
+    for (var i = 0; i < e.target.files.length; i++) { 
+      this.selectFile.push(e.target.files[i]);
+    }
     console.log(this.selectFile)
   }
 

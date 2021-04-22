@@ -24,7 +24,7 @@ export class ApiServiceService {
       userid: undefined,
       issue: "ISSUE NAME",
       status: this.ISSUE_STATUS[0].STATUS,
-      image: 'url'
+      image: []
     }
   ]
 
