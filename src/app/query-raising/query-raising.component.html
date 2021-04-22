@@ -9,16 +9,23 @@
 
         <h1 style="font-size: 28px;">DSRT Help-Desk</h1>
 
-        <div style="padding: 15px;">
+        <div style="padding:15px;">
+            <nz-select class="ant-col" formControlName="ticketType" nzShowSearch nzAllowClear nzPlaceHolder="Select"
+                nzSize="large" style="width: 200px;" (ngModelChange)="getMasterOption()">
+                <nz-option [nzLabel]="data.type" [nzValue]="data.ticketId" *ngFor="let data of ticketType" >
+                </nz-option>
+            </nz-select>
+
             <nz-select class="ant-col" formControlName="masterOptions" nzShowSearch nzAllowClear nzPlaceHolder="Select"
-                nzSize="large" style="width: 200px;" [(ngModel)]="selectedTitle" (ngModelChange)="getMasterSubTitle()">
+                nzSize="large" style="width: 200px;" (ngModelChange)="getMasterSubTitle()" 
+                    *ngIf="validateForm.controls.ticketType.value != null">
                 <nz-option [nzLabel]="data.masterTitle" [nzValue]="data.masterId"
-                    *ngFor="let data of dataSet; let i = index">
+                    *ngFor="let data of dataSetMasterTitle; let i = index">
                 </nz-option>
             </nz-select>
 
             <nz-select class="ant-col" formControlName="masterSubTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
-                style="width: 200px;" [(ngModel)]="selectedSubTitle" nzSize="large"
+                style="width: 200px;" nzSize="large"
                 *ngIf="validateForm.controls.masterOptions.value != null">
                 <nz-option *ngFor="let subTitle of dataSetSubTitle" [nzLabel]="subTitle.subTitle"
                     [nzValue]="subTitle.id"></nz-option>

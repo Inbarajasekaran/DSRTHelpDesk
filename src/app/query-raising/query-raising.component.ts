@@ -11,21 +11,37 @@ import { ApiServiceService } from '../api-service.service';
 export class QueryRaisingComponent implements OnInit {
   validateForm: FormGroup;
   modalForm: FormGroup;
-  selectedTitle;
-  selectedSubTitle;
+  // selectedTitle;
+  // selectedSubTitle;
+  // variable;
   dataSetSubTitle = [];
+  dataSetMasterTitle = [];
   modalVisible = false
   issue: string
-  selectFile = null; 
+  selectFile = null;
   image = null;
+
+  ticketType = [
+    {
+      ticketId: 1,
+      type: "Request"
+    },
+    {
+      ticketId: 2,
+      type: "Incident"
+    },
+  ];
+
   dataSet = [
     {
       masterTitle: "ERP Related Query",
+      type: 1,
       masterId: 1,
       subTitles: []
     },
     {
       masterTitle: "Mail ID",
+      type: 1,
       masterId: 2,
       subTitles: [
         {
@@ -47,20 +63,48 @@ export class QueryRaisingComponent implements OnInit {
     },
     {
       masterTitle: "COE",
+      type: 1,
       masterId: 3,
       subTitles: []
+    },
+    {
+      masterTitle: "Exam Result issue",
+      type: 2,
+      masterId: 4,
+      subTitles: [ {
+        id: 1,
+        masterId: 4,
+        subTitle: "Can't check result"
+      },
+      {
+        id: 2,
+        masterId: 4,
+        subTitle: "Not showing my result"
+      },
+    ]
+    },
+    {
+      masterTitle: "Mark Entry issue",
+      type: 2,
+      masterId: 5,
+      subTitles: [
+
+      ]
     }
   ];
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private modalFormBuilder: FormBuilder,
     private message: NzMessageService,
-    private apiService: ApiServiceService) { }
+    private apiService: ApiServiceService
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      masterOptions: ['', Validators.required],
-      masterSubTitle: ['', Validators.required],
+      masterOptions: [null, Validators.required],
+      masterSubTitle: [null, Validators.required],
+      ticketType: [null, Validators.required],
     });
     this.modalForm = this.modalFormBuilder.group({
       issueModal: ['', Validators.required],
@@ -68,14 +112,28 @@ export class QueryRaisingComponent implements OnInit {
     })
   }
 
+  getMasterOption() {
+    this.dataSetMasterTitle = []
+    this.validateForm.controls.masterOptions.setValue(null);
+    console.log(this.validateForm.controls.ticketType.value);
+    for (const variable of this.dataSet) {
+      if (this.validateForm.controls.ticketType.value == variable['type']) {
+        // console.log(variable);
+        this.dataSetMasterTitle.push(variable)
+      }
+    }
+    console.log(this.dataSetMasterTitle);
+  }
+
   getMasterSubTitle() {
     this.dataSetSubTitle = []
     this.validateForm.controls.masterSubTitle.setValue(null);
     for (const data of this.dataSet) {
-      if (data['masterId'] == this.selectedTitle) {
+      if (data['masterId'] == this.validateForm.controls.masterOptions.value) {
         this.dataSetSubTitle = data['subTitles']
       }
     }
+
   }
 
   raiseIssue() {
@@ -113,11 +171,12 @@ export class QueryRaisingComponent implements OnInit {
     console.log("SUBMIT");
   }
 
-  onFileAdded(event){
+  onFileAdded(event) {
     this.selectFile = event.target.files[0]
     console.log(this.selectFile)
   }
-  onUpload(){
+
+  onUpload() {
 
   }
 }
