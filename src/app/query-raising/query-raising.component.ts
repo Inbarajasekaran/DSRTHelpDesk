@@ -18,8 +18,11 @@ export class QueryRaisingComponent implements OnInit {
   dataSetMasterTitle = [];
   modalVisible = false
   issue: string
-  selectFile:string [] = [];
-  image = [];   
+  // selectFileName: string[] = [];
+  // selectFileSize: string[] = [];
+  fileInfo: any[] = [];
+
+  image = [];
 
   ticketType = [
     {
@@ -110,6 +113,13 @@ export class QueryRaisingComponent implements OnInit {
       issueModal: ['', Validators.required],
       attachImage: ['']
     })
+
+    // setInterval(()=>{
+    //   this.fileInfo.push({
+    //     fileName: 'hello',
+    //     fileSize: 'sadf'
+    //   })
+    // },1000)
   }
 
   getMasterOption() {
@@ -151,7 +161,7 @@ export class QueryRaisingComponent implements OnInit {
       userid: 1,
       issue: this.issue,
       status: this.apiService.ISSUE_STATUS[0]['STATUS'],
-      image: this.image,
+      fileInfo: this.fileInfo,
     });
     console.log("Ticket value is: " + this.validateForm.controls.ticketType.value,
       "Master title is: " + this.validateForm.controls.masterTitle.value,
@@ -172,12 +182,19 @@ export class QueryRaisingComponent implements OnInit {
     console.log("SUBMIT");
   }
 
-  getFileDetails (e) {
+  getFileDetails(e) {
+    let tmpData = this.fileInfo;
     //console.log (e.target.files);
-    for (var i = 0; i < e.target.files.length; i++) { 
-      this.selectFile.push(e.target.files[i]);
+    for (var i = 0; i < e.target.files.length; i++) {
+      // this.selectFileName.push(e.target.files[i].name);
+      // this.selectFileSize.push(e.target.files[i].size);
+      tmpData.push({
+        fileName: e.target.files[i].name,
+        fileSize: e.target.files[i].size
+      });
+      this.fileInfo = [...tmpData];
     }
-    console.log(this.selectFile)
+    console.log(this.fileInfo);
   }
 
   onUpload() {

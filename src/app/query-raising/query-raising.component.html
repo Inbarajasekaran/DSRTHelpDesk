@@ -12,32 +12,31 @@
         <div style="padding:15px;">
             <nz-select class="ant-col" formControlName="ticketType" nzShowSearch nzAllowClear nzPlaceHolder="Select"
                 nzSize="large" style="width: 200px;" (ngModelChange)="getMasterOption()">
-                <nz-option [nzLabel]="data.type" [nzValue]="data.ticketId" *ngFor="let data of ticketType" >
+                <nz-option [nzLabel]="data.type" [nzValue]="data.ticketId" *ngFor="let data of ticketType">
                 </nz-option>
             </nz-select>
 
             <nz-select class="ant-col" formControlName="masterTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
-                nzSize="large" style="width: 200px;" (ngModelChange)="getMasterSubTitle()" 
-                    *ngIf="validateForm.controls.ticketType.value != null">
+                nzSize="large" style="width: 200px;" (ngModelChange)="getMasterSubTitle()"
+                *ngIf="validateForm.controls.ticketType.value != null">
                 <nz-option [nzLabel]="data.masterTitle" [nzValue]="data.masterId"
                     *ngFor="let data of dataSetMasterTitle; let i = index">
                 </nz-option>
             </nz-select>
 
             <nz-select class="ant-col" formControlName="masterSubTitle" nzShowSearch nzAllowClear nzPlaceHolder="Select"
-                style="width: 200px;" nzSize="large"
-                *ngIf="validateForm.controls.masterTitle.value != null">
+                style="width: 200px;" nzSize="large" *ngIf="validateForm.controls.masterTitle.value != null">
                 <nz-option *ngFor="let subTitle of dataSetSubTitle" [nzLabel]="subTitle.subTitle"
                     [nzValue]="subTitle.id"></nz-option>
             </nz-select>
         </div>
-
         <div>
             <button class="ant-btn-round ant-row-center" nz-button style="margin-top:45px;" nzType="primary"
                 [disabled]="validateForm.invalid" nzSize="large" (click)="raiseIssue()">Raise Issue</button>
 
             <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
                 (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
                 <form nz-form [formGroup]="modalForm" (ngSubmit)="submitModal()">
                     <!-- <ng-container *nzModalContent> -->
                     <nz-form-item *nzModalContent>
@@ -45,12 +44,28 @@
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
                                 id="comment" nzAutosize nzRequired></textarea>
                             <div style="margin-top: 50px;">
-                                <input type="file" id="file" (change)="getFileDetails($event)" (click)="onUpload()" 
-                                 formControlName="attachImage" multiple>
-                                 <p>{{selectFile}}</p>
+                                <input type="file" (change)="getFileDetails($event)" (click)="onUpload()"
+                                    formControlName="attachImage" multiple>
+                                <div style="margin-top:15px; border:2px solid #84bfff;">
+                                    <nz-table #headerTable [nzData]="fileInfo" [nzPageSize]="5">
+                                        <thead>
+                                            <tr>
+                                                <th nzWidth="'25px'">#</th>
+                                                <th nzWidth="'25px'">Name</th>
+                                                <th nzWidth="'25px'">Size</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let getFileInfo of headerTable.data; let sno = index;">
+                                                <td>{{sno+1}}</td>
+                                                <td>{{getFileInfo.fileName}}</td>
+                                                <td>{{getFileInfo.fileSize}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </nz-table>
+                                </div>
                             </div>
                         </nz-form-control>
-
                     </nz-form-item>
                     <!-- </ng-container> -->
                 </form>

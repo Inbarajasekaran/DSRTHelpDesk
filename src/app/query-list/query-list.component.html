@@ -20,6 +20,7 @@ padding: 15px; pointer-events: all !important">
                     <td (click)="dataClick(data)">{{ data.issue }}</td>
                     <td (click)="dataClick(data)">{{ data.status }}</td>
                 </tr>
+                
                 <div>
                     <nz-modal [(nzVisible)]="isVisible" nzTitle="Modal" nzOkText="Ok" nzCancelText="Cancel"
                         (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
