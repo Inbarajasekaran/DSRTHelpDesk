@@ -183,7 +183,7 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   getFileDetails(e) {
-    let tmpData = this.fileInfo;
+    let tmpData = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
     //console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
       // this.selectFileName.push(e.target.files[i].name);
@@ -192,7 +192,7 @@ export class QueryRaisingComponent implements OnInit {
         fileName: e.target.files[i].name,
         fileSize: e.target.files[i].size
       });
-      this.fileInfo = [...tmpData];
+      this.fileInfo = [...tmpData]; /*concatenating the 2 array*/
     }
     console.log(this.fileInfo);
   }
