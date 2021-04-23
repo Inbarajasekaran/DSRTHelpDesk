@@ -183,20 +183,27 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   getFileDetails(e) {
-    let tmpData = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
+    let toConcatFileInfo = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
     //console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
       // this.selectFileName.push(e.target.files[i].name);
       // this.selectFileSize.push(e.target.files[i].size);
-      tmpData.push({
+      toConcatFileInfo.push({
         fileName: e.target.files[i].name,
-        fileSize: e.target.files[i].size
+        fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
       });
-      this.fileInfo = [...tmpData]; /*concatenating the 2 array*/
+      this.fileInfo = [...toConcatFileInfo]; /*concatenating the 2 array*/
     }
     console.log(this.fileInfo);
   }
 
   onUpload() {
+  }
+
+  removeFile(selectedValue){
+    console.log(this.fileInfo[selectedValue]);
+    var removeFile = this.fileInfo;
+    removeFile.splice(selectedValue, 1);
+    this.fileInfo = [...removeFile];
   }
 }

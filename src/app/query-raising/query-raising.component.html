@@ -43,16 +43,26 @@
                         <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The comment is required">
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
                                 id="comment" nzAutosize nzRequired></textarea>
-                            <div style="margin-top: 50px;">
-                                <input type="file" (change)="getFileDetails($event)" (click)="onUpload()"
-                                    formControlName="attachImage" multiple>
+
+                            <div style="margin-top: 20px;">
+
+                                <!-- <input type="file" id="file" (change)="getFileDetails($event)" (click)="onUpload()"
+                                    formControlName="attachImage" multiple /> -->
+
+                                <i nz-icon nzType="file-add" nzTheme="fill" (click)="inputFile.click()"
+                                    formControlName="attachImage">
+                                    <input type="file" style="display:none;" (change)="getFileDetails($event)"
+                                        #inputFile>
+                                </i>
+
                                 <div style="margin-top:15px; border:2px solid #84bfff;">
-                                    <nz-table #headerTable [nzData]="fileInfo" [nzPageSize]="5">
+                                    <nz-table #headerTable [nzData]="fileInfo" [nzPageSize]="4">
                                         <thead>
                                             <tr>
                                                 <th nzWidth="'25px'">#</th>
                                                 <th nzWidth="'25px'">Name</th>
                                                 <th nzWidth="'25px'">Size</th>
+                                                <th nzWidth="'25px'">Remove</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -60,11 +70,15 @@
                                                 <td>{{sno+1}}</td>
                                                 <td>{{getFileInfo.fileName}}</td>
                                                 <td>{{getFileInfo.fileSize}}</td>
+                                                <td> <i nz-icon style="color: red; font-size: 18px;" nzType="delete"
+                                                        nzTheme="fill" (click)="removeFile(sno)"></i> </td>
                                             </tr>
                                         </tbody>
                                     </nz-table>
                                 </div>
+
                             </div>
+
                         </nz-form-control>
                     </nz-form-item>
                     <!-- </ng-container> -->
