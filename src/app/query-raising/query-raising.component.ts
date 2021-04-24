@@ -202,8 +202,8 @@ export class QueryRaisingComponent implements OnInit {
 
   removeFile(selectedValue){
     console.log(this.fileInfo[selectedValue]);
-    var removeFile = this.fileInfo;
-    removeFile.splice(selectedValue, 1);
-    this.fileInfo = [...removeFile];
+    var FileToRemove = this.fileInfo;
+    FileToRemove.splice(selectedValue, 1);
+    this.fileInfo = [...FileToRemove];
   }
 }

@@ -6,6 +6,7 @@ import { QueryRaisingComponent } from './query-raising/query-raising.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'queryRaising', component: QueryRaisingComponent },
   { path: 'queryList', component: QueryListComponent },
 ];
