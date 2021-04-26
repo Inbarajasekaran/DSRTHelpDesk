@@ -8,12 +8,10 @@ import { NzModalService } from 'ng-zorro-antd/modal';
   styleUrls: ['./query-list.component.css']
 })
 export class QueryListComponent implements OnInit {
-  
+
   isVisible = false;
 
-  constructor(private apiService: ApiServiceService, private modalService: NzModalService) {
-
-  }
+  constructor(private apiService: ApiServiceService, private modalService: NzModalService) { }
 
   dataSet = [];
 
@@ -40,8 +38,9 @@ export class QueryListComponent implements OnInit {
     this.dataSet = this.apiService.issues;
     // console.log(this.dataSet)
   }
-  dataClick(data){
+  getIssueDetails(i) {
     this.isVisible = true;
+    console.log(this.apiService.issues[i]['fileInfo'])
     // alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
   }
 
@@ -59,10 +58,7 @@ export class QueryListComponent implements OnInit {
 
   showConfirm(): void {
     this.modalService.confirm({
-      nzTitle: 'Confirm',
-      nzContent: 'Bla bla ...',
-      nzOkText: 'OK',
-      nzCancelText: 'Cancel'
+      
     });
   }
 

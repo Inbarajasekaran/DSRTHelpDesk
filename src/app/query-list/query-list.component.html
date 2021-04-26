@@ -15,20 +15,25 @@ padding: 15px; pointer-events: all !important">
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of headerTable.data; let i = index">
-                    <td (click)="dataClick(data)">{{ i+1 }}</td>
-                    <td (click)="dataClick(data)">{{ data.issue }}</td>
-                    <td (click)="dataClick(data)">{{ data.status }}</td>
+                <tr (click)="getIssueDetails(i)" *ngFor="let data of headerTable.data; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ data.issue }}</td>
+                    <td>{{ data.status }}</td>
                 </tr>
-                
+
                 <div>
                     <nz-modal [(nzVisible)]="isVisible" nzTitle="Modal" nzOkText="Ok" nzCancelText="Cancel"
                         (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
                         <ng-container *nzModalContent>
                             <div *ngFor="let data of headerTable.data;">
-                                <p> Issue Name: {{data.issue}} <br>
-                                    Issue Status: {{data.status}} <br>
-                                    Image: {{data.image}}
+                                <p> Issue Name: <b>{{data.issue}} </b><br>
+                                    Issue Status: <b>{{data.status}}</b> <br>
+                                    <span style ="text-decoration: underline;"> File Information: </span><br>
+                                    <span *ngFor="let fileData of data.fileInfo; let selectedIssue = index;">
+                                        File Name: <b>{{fileData.fileName}}</b> , 
+                                        File Size:<b>{{fileData.fileSize}}</b>
+                                        <br>
+                                    </span>
                                 </p>
                                 <hr><br>
                             </div>

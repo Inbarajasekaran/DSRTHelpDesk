@@ -19,12 +19,6 @@ export class ApiServiceService {
       issue: "ISSUE NAME",
       status: this.ISSUE_STATUS[0].STATUS,
       fileInfo: []
-    },
-    {
-      userid: undefined,
-      issue: "ISSUE NAME",
-      status: this.ISSUE_STATUS[0].STATUS,
-      fileInfo: []
     }
   ]
 

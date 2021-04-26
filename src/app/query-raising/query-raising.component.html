@@ -57,7 +57,7 @@
                                 </i>
 
                                 <div style="margin-top:15px; border:2px solid #84bfff;">
-                                    <nz-table #headerTable [nzData]="fileInfo" [nzPageSize]="4">
+                                    <nz-table #fileUploadTable [nzData]="fileInfo" [nzPageSize]="4">
                                         <thead>
                                             <tr>
                                                 <th nzWidth="'25px'">#</th>
@@ -67,7 +67,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let getFileInfo of headerTable.data; let sno = index;">
+                                            <tr *ngFor="let getFileInfo of fileUploadTable.data; let sno = index;">
                                                 <td>{{sno+1}}</td>
                                                 <td>{{getFileInfo.fileName}}</td>
                                                 <td>{{getFileInfo.fileSize}}</td>
