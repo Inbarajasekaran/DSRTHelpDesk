@@ -28,9 +28,10 @@ padding: 15px; pointer-events: all !important">
                             <div *ngFor="let data of headerTable.data;">
                                 <p> Issue Name: <b>{{data.issue}} </b><br>
                                     Issue Status: <b>{{data.status}}</b> <br>
-                                    <span style ="text-decoration: underline;"> File Information: </span><br>
+                                    <span style ="text-decoration: underline;"> File Information: </span>
+                                    <br>
                                     <span *ngFor="let fileData of data.fileInfo; let selectedIssue = index;">
-                                        File Name: <b>{{fileData.fileName}}</b> , 
+                                        File Name: <b>{{fileData.fileName}}</b>, 
                                         File Size:<b>{{fileData.fileSize}}</b>
                                         <br>
                                     </span>
