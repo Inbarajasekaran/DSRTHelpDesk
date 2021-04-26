@@ -49,10 +49,11 @@
                                 <!-- <input type="file" id="file" (change)="getFileDetails($event)" (click)="onUpload()"
                                     formControlName="attachImage" multiple /> -->
 
-                                <i nz-icon nzType="file-add" nzTheme="fill" (click)="inputFile.click()">
+                                <i style="color: rgb(89, 168, 69); font-size: 32px;" nz-icon nzType="file-add"
+                                    nzTheme="fill" (click)="inputFile.click()">
                                     <h5>Attach File</h5>
-                                    <input type="file" style="display:none;" formControlName="attachImage"
-                                        (change)="getFileDetails($event)" multiple #inputFile>
+                                    <input type="file" style="display:none;" (change)="getFileDetails($event)"
+                                        formControlName="attachImage" #inputFile>
                                 </i>
 
                                 <div style="margin-top:15px; border:2px solid #84bfff;">
