@@ -8,21 +8,23 @@ import { ApiServiceService } from '../api-service.service';
   templateUrl: './query-raising.component.html',
   styleUrls: ['./query-raising.component.css']
 })
+
 export class QueryRaisingComponent implements OnInit {
-  validateForm: FormGroup;
-  modalForm: FormGroup;
+  validateForm!: FormGroup;
+  modalForm!: FormGroup;
   // selectedTitle;
   // selectedSubTitle;
   // variable;
   dataSetSubTitle = [];
   dataSetMasterTitle = [];
   modalVisible = false
-  issue: string
+  issue: string;
   // selectFileName: string[] = [];
   // selectFileSize: string[] = [];
   fileInfo: any[] = [];
-
   image = [];
+  spinOnClick
+
 
   ticketType = [
     {
@@ -105,13 +107,13 @@ export class QueryRaisingComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      masterTitle: [null, Validators.required],
-      masterSubTitle: [null, Validators.required],
-      ticketType: [null, Validators.required],
+      ticketType: [null, [Validators.required]],
+      masterTitle: [null, [Validators.required]],
+      masterSubTitle: [null, [Validators.required]],
     });
     this.modalForm = this.modalFormBuilder.group({
-      issueModal: ['', Validators.required],
-      attachImage: ['']
+      issueModal: [null, [Validators.required]],
+      attachImage: [null],
     })
 
     // setInterval(()=>{
@@ -120,6 +122,7 @@ export class QueryRaisingComponent implements OnInit {
     //     fileSize: 'sadf'
     //   })
     // },1000)
+
   }
 
   getMasterOption() {
@@ -151,18 +154,33 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   handleOk() {
+    this.spinOnClick = true;
+    setTimeout(() => {
+      this.spinOnClick = false;
+    }, 3000);
+
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
+
     if (this.modalForm.valid) {
       this.modalVisible = false;
     }
+
     this.issue = this.modalForm.controls.issueModal.value;
     this.image = this.modalForm.controls.attachImage.value;
     // console.log(this.image)
-    this.apiService.issues.push({
-      userid: 1,
-      issue: this.issue,
-      status: this.apiService.ISSUE_STATUS[0]['STATUS'],
-      fileInfo: this.fileInfo,
-    });
+
+    this.apiService.issues.push(
+      {
+        userid: 1,
+        issue: this.issue,
+        status: this.apiService.ISSUE_STATUS[0]['STATUS'],
+        fileInfo: this.fileInfo,
+      }
+    );
+
     console.log("Ticket value is: " + this.validateForm.controls.ticketType.value,
       "Master title is: " + this.validateForm.controls.masterTitle.value,
       "SubTitle is : " + this.validateForm.controls.masterSubTitle.value);
@@ -178,9 +196,9 @@ export class QueryRaisingComponent implements OnInit {
     this.modalVisible = false;
   }
 
-  submitModal() {
-    console.log("SUBMIT");
-  }
+  // submitModal() {
+  //   console.log("SUBMIT");
+  // }
 
   getFileDetails(e) {
     let toConcatFileInfo = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
@@ -188,22 +206,24 @@ export class QueryRaisingComponent implements OnInit {
     for (var i = 0; i < e.target.files.length; i++) {
       // this.selectFileName.push(e.target.files[i].name);
       // this.selectFileSize.push(e.target.files[i].size);
-      toConcatFileInfo.push({
-        fileName: e.target.files[i].name,
-        fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
-      });
+      toConcatFileInfo.push(
+        {
+          fileName: e.target.files[i].name,
+          fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
+        }
+      );
       this.fileInfo = [...toConcatFileInfo]; /*concatenating the 2 array*/
     }
     console.log(this.fileInfo);
   }
 
-  onUpload() {
-  }
+  onUpload() { }
 
-  removeFile(selectedValue){
+  removeFile(selectedValue) {
     console.log(this.fileInfo[selectedValue]);
     var FileToRemove = this.fileInfo;
     FileToRemove.splice(selectedValue, 1);
     this.fileInfo = [...FileToRemove];
   }
+  
 }

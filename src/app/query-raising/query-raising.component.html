@@ -30,32 +30,34 @@
                     [nzValue]="subTitle.id"></nz-option>
             </nz-select>
         </div>
+
         <div>
             <button class="ant-btn-round ant-row-center" nz-button style="margin-top:45px;" nzType="primary"
                 [disabled]="validateForm.invalid" nzSize="large" (click)="raiseIssue()">Raise Issue</button>
 
             <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
-                (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                [nzOkLoading]="spinOnClick" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
-                <form nz-form [formGroup]="modalForm" (ngSubmit)="submitModal()">
+                <form nz-form [formGroup]="modalForm">
                     <!-- <ng-container *nzModalContent> -->
                     <nz-form-item *nzModalContent>
+                        <nz-form-label [nzSm]="0" [nzXs]="0" nzRequired nzFor="comment">Comment</nz-form-label>
                         <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The comment is required">
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
-                                id="comment" nzAutosize nzRequired></textarea>
+                             id="comment" nzAutosize></textarea>
 
-                            <div style="margin-top: 20px;">
+                             <div style="margin-top: 20px;">
 
                                 <!-- <input type="file" id="file" (change)="getFileDetails($event)" (click)="onUpload()"
                                     formControlName="attachImage" multiple /> -->
-
+    
                                 <h3>Attach File: </h3>
                                 <i style="color: rgb(89, 168, 69); font-size: 32px;" nz-icon nzType="file-add"
                                     nzTheme="fill" (click)="inputFile.click()">
                                     <input type="file" style="display:none;" (change)="getFileDetails($event)"
                                         formControlName="attachImage" multiple #inputFile>
                                 </i>
-
+    
                                 <div style="margin-top:15px; border:2px solid #84bfff;">
                                     <nz-table #fileUploadTable [nzData]="fileInfo" [nzPageSize]="4">
                                         <thead>
@@ -71,13 +73,15 @@
                                                 <td>{{sno+1}}</td>
                                                 <td>{{getFileInfo.fileName}}</td>
                                                 <td>{{getFileInfo.fileSize}}</td>
-                                                <td> <i nz-icon style="color: red; font-size: 18px;" nzType="delete"
-                                                        nzTheme="fill" (click)="removeFile(sno)"></i> </td>
+                                                <td>
+                                                    <i nz-icon style="color: red; font-size: 18px;" nzType="delete"
+                                                        nzTheme="fill" (click)="removeFile(sno)"></i>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </nz-table>
                                 </div>
-
+    
                             </div>
 
                         </nz-form-control>

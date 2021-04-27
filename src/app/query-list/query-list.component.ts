@@ -10,6 +10,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class QueryListComponent implements OnInit {
 
   isVisible = false;
+  fileInformation
 
   constructor(private apiService: ApiServiceService, private modalService: NzModalService) { }
 
@@ -40,7 +41,8 @@ export class QueryListComponent implements OnInit {
   }
   getIssueDetails(i) {
     this.isVisible = true;
-    console.log(this.apiService.issues[i]['fileInfo'])
+    this.fileInformation = this.apiService.issues[i]['fileInfo'];
+    console.log(this.fileInformation)
     // alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
   }
 
