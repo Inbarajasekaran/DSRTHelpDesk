@@ -160,8 +160,12 @@ export class QueryRaisingComponent implements OnInit {
     }, 3000);
 
     for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsTouched();
+      this.modalForm.controls[i].markAsTouched();
       this.validateForm.controls[i].markAsDirty();
+      this.modalForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
+      this.modalForm.controls[i].updateValueAndValidity();
     }
 
     if (this.modalForm.valid) {

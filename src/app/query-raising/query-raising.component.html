@@ -44,7 +44,8 @@
                         <nz-form-label [nzSm]="0" [nzXs]="0" nzRequired nzFor="comment">Comment</nz-form-label>
                         <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The comment is required">
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
-                             id="comment" nzAutosize></textarea>
+                             id="comment" nzAutosize ></textarea>
+                             <div *ngIf = "modalForm.controls['issueModal'].touched">Required</div>
 
                              <div style="margin-top: 20px;">
 
