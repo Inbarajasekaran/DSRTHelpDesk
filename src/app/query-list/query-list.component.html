@@ -37,11 +37,16 @@ padding: 15px; pointer-events: all !important">
                                 </p>
                                 <hr><br>
                             </div> -->
-                            <div>
-                                File Name: <b>{{fileInformation[0].fileName}}</b>,
+                            Issue Name: <b>{{issueName}}</b>
+                            <br>
+                            Issue Status: <b>{{issueStatus}}</b>
+                            <br>
+                            <span *ngFor="let fileDetails of fileInformation; let val = index">
+                                File Name: <b>{{fileInformation[val].fileName}}</b>,
                                 <br>
-                                File Size:<b>{{fileInformation[0].fileSize}}</b>
-                            </div>
+                                File Size:<b>{{fileInformation[val].fileSize}}</b>
+                                <br>
+                            </span>
                         </ng-container>
                     </nz-modal>
                 </div>

@@ -115,14 +115,13 @@ export class QueryRaisingComponent implements OnInit {
       issueModal: [null, [Validators.required]],
       attachImage: [null],
     })
+  }
 
-    // setInterval(()=>{
-    //   this.fileInfo.push({
-    //     fileName: 'hello',
-    //     fileSize: 'sadf'
-    //   })
-    // },1000)
-
+  testFun(){
+    for (const modal in this.modalForm.controls){
+      this.modalForm.controls[modal].markAsDirty();
+      this.modalForm.controls[modal].updateValueAndValidity();
+    }
   }
 
   getMasterOption() {
@@ -150,49 +149,57 @@ export class QueryRaisingComponent implements OnInit {
   }
 
   raiseIssue() {
+    console.log("Ticket value is: " + this.validateForm.controls.ticketType.value,
+      "Master title is: " + this.validateForm.controls.masterTitle.value,
+      "SubTitle is : " + this.validateForm.controls.masterSubTitle.value);
     this.modalVisible = true;
   }
 
   handleOk() {
     this.spinOnClick = true;
     setTimeout(() => {
+      if (this.modalForm.invalid) {
+        this.message.info("Oops..We can't get your query!");
+      }
       this.spinOnClick = false;
     }, 3000);
 
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsTouched();
-      this.modalForm.controls[i].markAsTouched();
-      this.validateForm.controls[i].markAsDirty();
-      this.modalForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-      this.modalForm.controls[i].updateValueAndValidity();
-    }
+    // for (const mainForm in this.validateForm.controls) {
+    //   this.validateForm.controls[mainForm].markAsDirty();
+    //   this.validateForm.controls[mainForm].updateValueAndValidity();
+    // }
 
-    if (this.modalForm.valid) {
-      this.modalVisible = false;
-    }
+    // for (const modal in this.modalForm.controls){
+    //   this.modalForm.controls[modal].markAsDirty();
+    //   this.modalForm.controls[modal].updateValueAndValidity();
+    // }
 
     this.issue = this.modalForm.controls.issueModal.value;
     this.image = this.modalForm.controls.attachImage.value;
+
+    if (this.modalForm.valid) {
+      this.message.info("Noted..We are tracking your issue..!")
+      this.apiService.issues.push(
+        {
+          userid: 1,
+          issue: this.issue,
+          status: this.apiService.ISSUE_STATUS[0]['STATUS'],
+          fileInfo: this.fileInfo,
+        }
+      );
+      this.modalVisible = false;
+    }
+
     // console.log(this.image)
 
-    this.apiService.issues.push(
-      {
-        userid: 1,
-        issue: this.issue,
-        status: this.apiService.ISSUE_STATUS[0]['STATUS'],
-        fileInfo: this.fileInfo,
-      }
-    );
-
-    console.log("Ticket value is: " + this.validateForm.controls.ticketType.value,
-      "Master title is: " + this.validateForm.controls.masterTitle.value,
-      "SubTitle is : " + this.validateForm.controls.masterSubTitle.value);
-    console.log(this.modalForm.controls.issueModal.value);
+    console.log(this.apiService.issues);
+    // console.log(this.modalForm.controls.issueModal.value);
     //console.log(this.apiService.issues)
     this.validateForm.reset();
     this.modalForm.reset();
-    this.message.info('Noted..We are tracking your issue.!');
+    if (this.modalForm.controls.valid) {
+      alert('Noted..We are tracking your issue.!');
+    }
   }
 
   handleCancel() {
@@ -229,5 +236,5 @@ export class QueryRaisingComponent implements OnInit {
     FileToRemove.splice(selectedValue, 1);
     this.fileInfo = [...FileToRemove];
   }
-  
+
 }

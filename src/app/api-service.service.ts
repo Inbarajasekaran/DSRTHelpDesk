@@ -14,12 +14,12 @@ export class ApiServiceService {
   constructor() { }
 
   issues = [
-    // {
-    //   userid: undefined,
-    //   issue: "ISSUE NAME 1",
-    //   status: this.ISSUE_STATUS[0].STATUS,
-    //   fileInfo: []
-    // },
+    {
+      userid: undefined,
+      issue: "ISSUE NAME 1",
+      status: this.ISSUE_STATUS[0].STATUS,
+      fileInfo: []
+    },
   ]
 
 }

@@ -44,21 +44,20 @@
                         <nz-form-label [nzSm]="0" [nzXs]="0" nzRequired nzFor="comment">Comment</nz-form-label>
                         <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The comment is required">
                             <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
-                             id="comment" nzAutosize ></textarea>
-                             <div *ngIf = "modalForm.controls['issueModal'].touched">Required</div>
+                                [nzRequired]="true" id="comment" nzAutosize></textarea>
 
-                             <div style="margin-top: 20px;">
+                            <div style="margin-top: 20px;">
 
                                 <!-- <input type="file" id="file" (change)="getFileDetails($event)" (click)="onUpload()"
                                     formControlName="attachImage" multiple /> -->
-    
+
                                 <h3>Attach File: </h3>
                                 <i style="color: rgb(89, 168, 69); font-size: 32px;" nz-icon nzType="file-add"
                                     nzTheme="fill" (click)="inputFile.click()">
-                                    <input type="file" style="display:none;" (change)="getFileDetails($event)"
-                                        formControlName="attachImage" multiple #inputFile>
+                                    <input type="file" style="display:none;" (change)="getFileDetails($event)" multiple
+                                        #inputFile>
                                 </i>
-    
+
                                 <div style="margin-top:15px; border:2px solid #84bfff;">
                                     <nz-table #fileUploadTable [nzData]="fileInfo" [nzPageSize]="4">
                                         <thead>
@@ -82,9 +81,8 @@
                                         </tbody>
                                     </nz-table>
                                 </div>
-    
+                                <button (click)="testFun()">test error</button>
                             </div>
-
                         </nz-form-control>
                     </nz-form-item>
                     <!-- </ng-container> -->
