@@ -113,7 +113,7 @@ export class QueryRaisingComponent implements OnInit {
     });
     this.modalForm = this.modalFormBuilder.group({
       issueComment: [null, [Validators.required]],
-      attachImage: [null],
+      attachImage: [null,[]],
     })
   }
 
@@ -194,6 +194,7 @@ export class QueryRaisingComponent implements OnInit {
 
   handleCancel() {
     this.modalForm.reset();
+    this.fileInfo = [];
     this.modalVisible = false;
   }
 
@@ -220,7 +221,6 @@ export class QueryRaisingComponent implements OnInit {
       alert("error")
     }
   }
-
     console.log(this.fileInfo);
   }
 
