@@ -206,17 +206,21 @@ export class QueryRaisingComponent implements OnInit {
     //console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
       let fileName =  e.target.files[i].name
-      let fileSize = (e.target.files[i].size / 1024).toFixed(2) + "kb"
+      let fileSize = (e.target.files[i].size / 1024).toFixed(2)
+      if (parseInt(fileSize) < 512){
       toConcatFileInfo.push(
         {
-          fileName, 
-          fileSize
+          fileName, fileSize 
           //fileName: e.target.files[i].name,
           //fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
         }
       );
       this.fileInfo = [...toConcatFileInfo]; /*concatenating the 2 array*/
+    } else {
+      alert("error")
     }
+  }
+
     console.log(this.fileInfo);
   }
 

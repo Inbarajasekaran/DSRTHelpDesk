@@ -72,7 +72,7 @@
                                             <tr *ngFor="let getFileInfo of fileUploadTable.data; let sno = index;">
                                                 <td style="max-width: 25px;">{{sno+1}}</td>
                                                 <td style="max-width: 25px;">{{getFileInfo.fileName}}</td>
-                                                <td style="max-width: 25px;">{{getFileInfo.fileSize}}</td>
+                                                <td style="max-width: 25px;">{{getFileInfo.fileSize}} Kb</td>
                                                 <td>
                                                     <i nz-icon style="color: red; font-size: 18px;" nzType="delete"
                                                         nzTheme="fill" (click)="removeFile(sno)"></i>
