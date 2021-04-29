@@ -22,7 +22,7 @@ padding: 15px; pointer-events: all !important">
                 </tr>
 
                 <div>
-                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Modal" nzOkText="Ok" nzCancelText="Cancel"
+                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" nzOkText="Ok" nzCancelText="Cancel"
                         (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
                         <ng-container *nzModalContent>
                             <!-- <div *ngFor="let data of headerTable.data;">
@@ -40,13 +40,12 @@ padding: 15px; pointer-events: all !important">
                             Issue Name: <b>{{issueName}}</b>
                             <br>
                             Issue Status: <b>{{issueStatus}}</b>
-                            <br>
-                            <span *ngFor="let fileDetails of fileInformation; let val = index">
-                                File Name: <b>{{fileInformation[val].fileName}}</b>,
+                            <div *ngFor="let fileDetails of fileInformation; let val = index" style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
+                                File Name: <b>{{fileInformation[val].fileName}}</b>
                                 <br>
                                 File Size:<b>{{fileInformation[val].fileSize}}</b>
                                 <br>
-                            </span>
+                            </div>
                         </ng-container>
                     </nz-modal>
                 </div>

@@ -43,7 +43,7 @@
                     <nz-form-item *nzModalContent>
                         <nz-form-label [nzSm]="0" [nzXs]="0" nzRequired nzFor="comment">Comment</nz-form-label>
                         <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The comment is required">
-                            <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueModal"
+                            <textarea rows="4" nz-input placeholder="Comment Your Issue" formControlName="issueComment"
                                 [nzRequired]="true" id="comment" nzAutosize></textarea>
 
                             <div style="margin-top: 20px;">
@@ -81,7 +81,6 @@
                                         </tbody>
                                     </nz-table>
                                 </div>
-                                <button (click)="testFun()">test error</button>
                             </div>
                         </nz-form-control>
                     </nz-form-item>

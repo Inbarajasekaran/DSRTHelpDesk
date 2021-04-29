@@ -112,16 +112,9 @@ export class QueryRaisingComponent implements OnInit {
       masterSubTitle: [null, [Validators.required]],
     });
     this.modalForm = this.modalFormBuilder.group({
-      issueModal: [null, [Validators.required]],
+      issueComment: [null, [Validators.required]],
       attachImage: [null],
     })
-  }
-
-  testFun(){
-    for (const modal in this.modalForm.controls){
-      this.modalForm.controls[modal].markAsDirty();
-      this.modalForm.controls[modal].updateValueAndValidity();
-    }
   }
 
   getMasterOption() {
@@ -155,26 +148,26 @@ export class QueryRaisingComponent implements OnInit {
     this.modalVisible = true;
   }
 
-  handleOk() {
+  handleOk() {    
     this.spinOnClick = true;
     setTimeout(() => {
-      if (this.modalForm.invalid) {
+      if (this.modalVisible == true &&  this.modalForm.invalid) {
         this.message.info("Oops..We can't get your query!");
       }
       this.spinOnClick = false;
     }, 3000);
 
-    // for (const mainForm in this.validateForm.controls) {
-    //   this.validateForm.controls[mainForm].markAsDirty();
-    //   this.validateForm.controls[mainForm].updateValueAndValidity();
-    // }
+    for (const mainForm in this.validateForm.controls) {
+      this.validateForm.controls[mainForm].markAsDirty();
+      this.validateForm.controls[mainForm].updateValueAndValidity();
+    }
 
-    // for (const modal in this.modalForm.controls){
-    //   this.modalForm.controls[modal].markAsDirty();
-    //   this.modalForm.controls[modal].updateValueAndValidity();
-    // }
+    for (const modal in this.modalForm.controls){
+      this.modalForm.controls[modal].markAsDirty();
+      this.modalForm.controls[modal].updateValueAndValidity();
+    }
 
-    this.issue = this.modalForm.controls.issueModal.value;
+    this.issue = this.modalForm.controls.issueComment.value;
     this.image = this.modalForm.controls.attachImage.value;
 
     if (this.modalForm.valid) {
@@ -188,18 +181,15 @@ export class QueryRaisingComponent implements OnInit {
         }
       );
       this.modalVisible = false;
+      this.modalForm.reset();
     }
 
     // console.log(this.image)
 
     console.log(this.apiService.issues);
-    // console.log(this.modalForm.controls.issueModal.value);
+    // console.log(this.modalForm.controls.issueComment.value);
     //console.log(this.apiService.issues)
     this.validateForm.reset();
-    this.modalForm.reset();
-    if (this.modalForm.controls.valid) {
-      alert('Noted..We are tracking your issue.!');
-    }
   }
 
   handleCancel() {
