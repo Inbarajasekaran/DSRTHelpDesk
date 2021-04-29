@@ -205,12 +205,14 @@ export class QueryRaisingComponent implements OnInit {
     let toConcatFileInfo = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
     //console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
-      // this.selectFileName.push(e.target.files[i].name);
-      // this.selectFileSize.push(e.target.files[i].size);
+      let fileName =  e.target.files[i].name
+      let fileSize = (e.target.files[i].size / 1024).toFixed(2) + "kb"
       toConcatFileInfo.push(
         {
-          fileName: e.target.files[i].name,
-          fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
+          fileName, 
+          fileSize
+          //fileName: e.target.files[i].name,
+          //fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
         }
       );
       this.fileInfo = [...toConcatFileInfo]; /*concatenating the 2 array*/
