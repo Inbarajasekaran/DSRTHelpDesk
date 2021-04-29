@@ -155,7 +155,7 @@ export class QueryRaisingComponent implements OnInit {
         this.message.info("Oops..We can't get your query!");
       }
       this.spinOnClick = false;
-    }, 3000);
+    }, 2000);
 
     for (const mainForm in this.validateForm.controls) {
       this.validateForm.controls[mainForm].markAsDirty();
