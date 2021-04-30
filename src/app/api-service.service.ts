@@ -6,9 +6,11 @@ import { Injectable } from '@angular/core';
 export class ApiServiceService {
 
   ISSUE_STATUS = [
-    { STATUS_ID: 1, STATUS: 'Pending' },
-    { STATUS_ID: 2, STATUS: 'Processing' },
-    { STATUS_ID: 3, STATUS: 'Completed' }
+    { STATUS_ID: 1, STATUS: 'Pending / Open' },
+    { STATUS_ID: 2, STATUS: 'Assigned' },
+    { STATUS_ID: 3, STATUS: 'In Process' },
+    { STATUS_ID: 4, STATUS: 'Closed' },
+    { STATUS_ID: 5, STATUS: 'Unresolved' }
   ];
 
   constructor() { }

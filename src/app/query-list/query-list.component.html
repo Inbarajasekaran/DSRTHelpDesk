@@ -23,7 +23,7 @@ padding: 15px; pointer-events: all !important">
 
                 <div>
                     <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" nzOkText="Ok" nzCancelText="Cancel"
-                        (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                        [nzFooter]="modalFooter">
                         <ng-container *nzModalContent>
                             <!-- <div *ngFor="let data of headerTable.data;">
                                 <p> Issue Name: <b>{{data.issue}} </b><br>
@@ -39,14 +39,32 @@ padding: 15px; pointer-events: all !important">
                             </div> -->
                             Issue Name: <b>{{issueName}}</b>
                             <br>
+                            <input nz-input style="width:50%" placeholder="Issue Name" *ngIf="show"
+                                [(ngModel)]="issueName" />
+                            <br>
                             Issue Status: <b>{{issueStatus}}</b>
-                            <div *ngFor="let fileDetails of fileInformation; let val = index" style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
+                            <br>
+                            <!-- <ul *ngFor="let loop of listOfIssueStatus;"><li *ngIf="show" >{{loop.STATUS}}</li></ul> -->
+                            <nz-select style="width:50%" ngModel="listOfIssueStatus" *ngIf="show">
+                                <nz-option *ngFor="let loop of listOfIssueStatus; let i = index" [nzValue]="loop.STATUS"
+                                    [nzLabel]="loop.STATUS"></nz-option>
+                            </nz-select>
+                            <div *ngFor="let fileDetails of fileInformation; let val = index"
+                                style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
                                 File Name: <b>{{fileInformation[val].fileName}}</b>
                                 <br>
                                 File Size:<b>{{fileInformation[val].fileSize}}</b>
                                 <br>
                             </div>
                         </ng-container>
+                        <ng-template #modalFooter>
+                            <button nz-button nzType="default" (click)="editIssue()">
+                                <i style="padding:4px;" nz-icon nzType="edit" nzTheme="fill"></i>
+                            </button>
+                            <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+                            <button nz-button nzType="primary" (click)="handleOk()"
+                                [nzLoading]="isConfirmLoading">Submit</button>
+                        </ng-template>
                     </nz-modal>
                 </div>
             </tbody>
