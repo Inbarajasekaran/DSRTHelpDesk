@@ -38,7 +38,7 @@ export class QueryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataGet();
-    for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++){
+    for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
       this.listOfIssueStatus.push(this.apiService.ISSUE_STATUS[i])
     }
     console.log(this.listOfIssueStatus)
@@ -63,14 +63,14 @@ export class QueryListComponent implements OnInit {
   //   this.isVisible = true;
   // }
 
-  editIssue(){
+  editIssue() {
     this.show = true;
   }
 
   handleOk(): void {
-    for (let i = 0; i < this.apiService.issues.length; i++){
-    this.apiService.issues[i]['issue'] = this.issueName;
-  }
+    for (let i = 0; i < this.apiService.issues.length; i++) {
+      this.apiService.issues[i]['issue'] = this.issueName;
+    }
     this.isVisible = false;
   }
 

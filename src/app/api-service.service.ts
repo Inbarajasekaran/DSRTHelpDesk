@@ -22,6 +22,12 @@ export class ApiServiceService {
       status: this.ISSUE_STATUS[0].STATUS,
       fileInfo: []
     },
+    {
+      userid: undefined,
+      issue: "ISSUE NAME 2",
+      status: this.ISSUE_STATUS[0].STATUS,
+      fileInfo: []
+    },
   ]
 
 }

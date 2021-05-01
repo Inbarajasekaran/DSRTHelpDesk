@@ -22,7 +22,7 @@ padding: 15px; pointer-events: all !important">
                 </tr>
 
                 <div>
-                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" nzOkText="Ok" nzCancelText="Cancel"
+                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
                         [nzFooter]="modalFooter">
                         <ng-container *nzModalContent>
                             <!-- <div *ngFor="let data of headerTable.data;">
