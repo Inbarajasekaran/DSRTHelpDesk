@@ -67,10 +67,10 @@ export class QueryListComponent implements OnInit {
     this.show = true;
   }
 
-  handleOk(): void {
-    for (let i = 0; i < this.apiService.issues.length; i++) {
+  handleOk(i): void {
+    // forOf (let i = 0; i < this.apiService.issues.length; i++) {
       this.apiService.issues[i]['issue'] = this.issueName;
-    }
+    // }
     this.isVisible = false;
   }
 

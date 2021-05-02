@@ -22,8 +22,8 @@ padding: 15px; pointer-events: all !important">
                 </tr>
 
                 <div>
-                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
-                        [nzFooter]="modalFooter">
+                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" (nzOnCancel)="handleCancel()"
+                         [nzFooter]="modalFooter">
                         <ng-container *nzModalContent>
                             <!-- <div *ngFor="let data of headerTable.data;">
                                 <p> Issue Name: <b>{{data.issue}} </b><br>
@@ -62,8 +62,10 @@ padding: 15px; pointer-events: all !important">
                                 <i style="padding:4px;" nz-icon nzType="edit" nzTheme="fill"></i>
                             </button>
                             <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
-                            <button nz-button nzType="primary" (click)="handleOk()"
-                                [nzLoading]="isConfirmLoading">Submit</button>
+                            <button nz-button nzType="primary" (click)="handleOk(i)"
+                                *ngFor="let data of headerTable.data; let i = index" [nzLoading]="isConfirmLoading">
+                                Submit
+                            </button>
                         </ng-template>
                     </nz-modal>
                 </div>
