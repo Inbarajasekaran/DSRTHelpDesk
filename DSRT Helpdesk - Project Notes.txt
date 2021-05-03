@@ -16,7 +16,7 @@ Ticket
         Unresolved ::
 
 
-END USER : (STUDENT / STAFF)
+END USER : ( STUDENT / STAFF )
     1) Able to Raise a Ticket
     2) Able to track the ticket
     3) Able to View all the History of tickets applied by own
