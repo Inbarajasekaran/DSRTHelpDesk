@@ -15,7 +15,6 @@ Ticket
         Closed :: 
         Unresolved ::
 
-
 END USER : (STUDENT / STAFF)
     1) Able to Raise a Ticket
     2) Able to track the ticket
