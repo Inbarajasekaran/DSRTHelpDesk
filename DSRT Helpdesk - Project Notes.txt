@@ -13,7 +13,7 @@ Ticket
         Assigned :: Once assigned to user
         In Process :: 
         Closed :: 
-        Unresolved :: 
+        Unresolved ::
 
 
 END USER : (STUDENT / STAFF)
