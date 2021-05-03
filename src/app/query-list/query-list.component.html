@@ -15,7 +15,7 @@ padding: 15px; pointer-events: all !important">
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="getIssueDetails(i)" *ngFor="let data of headerTable.data; let i = index">
+                <tr (click)="getIssueDetails(data)" *ngFor="let data of headerTable.data; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>{{ data.issue }}</td>
                     <td>{{ data.status }}</td>
@@ -23,7 +23,7 @@ padding: 15px; pointer-events: all !important">
 
                 <div>
                     <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" (nzOnCancel)="handleCancel()"
-                         [nzFooter]="modalFooter">
+                        [nzFooter]="modalFooter">
                         <ng-container *nzModalContent>
                             <!-- <div *ngFor="let data of headerTable.data;">
                                 <p> Issue Name: <b>{{data.issue}} </b><br>
@@ -37,12 +37,12 @@ padding: 15px; pointer-events: all !important">
                                 </p>
                                 <hr><br>
                             </div> -->
-                            Issue Name: <b>{{issueName}}</b>
+                            Issue Name: <b>{{dataForModal.issue}}</b>
                             <br>
                             <input nz-input style="width:50%" placeholder="Issue Name" *ngIf="show"
                                 [(ngModel)]="issueName" />
                             <br>
-                            Issue Status: <b>{{issueStatus}}</b>
+                            Issue Status: <b>{{dataForModal.status}}</b>
                             <br>
                             <!-- <ul *ngFor="let loop of listOfIssueStatus;"><li *ngIf="show" >{{loop.STATUS}}</li></ul> -->
                             <nz-select style="width:50%" ngModel="listOfIssueStatus" *ngIf="show">
@@ -61,9 +61,10 @@ padding: 15px; pointer-events: all !important">
                             <button nz-button nzType="default" (click)="editIssue()">
                                 <i style="padding:4px;" nz-icon nzType="edit" nzTheme="fill"></i>
                             </button>
-                            <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
-                            <button nz-button nzType="primary" (click)="handleOk(i)"
-                                *ngFor="let data of headerTable.data; let i = index" [nzLoading]="isConfirmLoading">
+                            <button nz-button nzType="default" (click)="handleCancel()">
+                                Cancel
+                            </button>
+                            <button nz-button nzType="primary" (click)="handleOk(dataForModal)" [nzLoading]="isConfirmLoading">
                                 Submit
                             </button>
                         </ng-template>

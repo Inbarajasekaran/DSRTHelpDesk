@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-query-list',
@@ -15,6 +14,7 @@ export class QueryListComponent implements OnInit {
   fileInformation;
   issueName;
   issueStatus;
+  dataForModal;
   listOfIssueStatus = [];
 
   constructor(private apiService: ApiServiceService, private modalService: NzModalService) { }
@@ -48,14 +48,15 @@ export class QueryListComponent implements OnInit {
     this.dataSet = this.apiService.issues;
     // console.log(this.dataSet)
   }
-  getIssueDetails(i) {
+  getIssueDetails(data) {
     this.isVisible = true;
-    this.issueName = this.apiService.issues[i]['issue'];
-    console.log(this.issueName)
-    this.issueStatus = this.apiService.issues[i]['status'];
-    console.log(this.issueStatus)
-    this.fileInformation = this.apiService.issues[i]['fileInfo'];
-    console.log(this.fileInformation)
+    this.dataForModal = data;
+    // this.issueName = this.apiService.issues[dataForModal]['issue'];
+    // console.log(this.issueName)
+    // this.issueStatus = this.apiService.issues[dataForModal]['status'];
+    // console.log(this.issueStatus)
+    // this.fileInformation = this.apiService.issues[dataForModal]['fileInfo'];
+    // console.log(this.fileInformation)
     // alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
   }
 
@@ -67,10 +68,18 @@ export class QueryListComponent implements OnInit {
     this.show = true;
   }
 
-  handleOk(i): void {
-    // forOf (let i = 0; i < this.apiService.issues.length; i++) {
-      this.apiService.issues[i]['issue'] = this.issueName;
+  handleOk(dataForModal): void {
+    // for (let i = 0; i < this.apiService.issues.length; i++) {
+    //   this.apiService.issues[i]['issue'] = this.issueName;
     // }
+    for (let i = 0; i < this.apiService.issues.length; i++) {
+      if (dataForModal['issueid'] == this.apiService.issues[i]['issueid']) {
+        this.apiService.issues[i]['issue'] = this.issueName;
+      }
+    }
+    this.issueStatus = this.listOfIssueStatus
+    this.issueName = ""
+    this.show = false;
     this.isVisible = false;
   }
 

@@ -113,7 +113,7 @@ export class QueryRaisingComponent implements OnInit {
     });
     this.modalForm = this.modalFormBuilder.group({
       issueComment: [null, [Validators.required]],
-      attachImage: [null,[]],
+      attachImage: [null, []],
     })
   }
 
@@ -148,10 +148,10 @@ export class QueryRaisingComponent implements OnInit {
     this.modalVisible = true;
   }
 
-  handleOk() {    
+  handleOk() {
     this.spinOnClick = true;
     setTimeout(() => {
-      if (this.modalVisible == true &&  this.modalForm.invalid) {
+      if (this.modalVisible == true && this.modalForm.invalid) {
         this.message.info("Oops..We can't get your query!");
       }
       this.spinOnClick = false;
@@ -162,7 +162,7 @@ export class QueryRaisingComponent implements OnInit {
       this.validateForm.controls[mainForm].updateValueAndValidity();
     }
 
-    for (const modal in this.modalForm.controls){
+    for (const modal in this.modalForm.controls) {
       this.modalForm.controls[modal].markAsDirty();
       this.modalForm.controls[modal].updateValueAndValidity();
     }
@@ -175,6 +175,7 @@ export class QueryRaisingComponent implements OnInit {
       this.apiService.issues.push(
         {
           userid: 1,
+          issueid: this.apiService.issues.length + 1,
           issue: this.issue,
           status: this.apiService.ISSUE_STATUS[0]['STATUS'],
           fileInfo: this.fileInfo,
@@ -206,21 +207,21 @@ export class QueryRaisingComponent implements OnInit {
     let toConcatFileInfo = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
     //console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
-      let fileName =  e.target.files[i].name
+      let fileName = e.target.files[i].name
       let fileSize = (e.target.files[i].size / 1024).toFixed(2)
-      if (parseInt(fileSize) < 512){
-      toConcatFileInfo.push(
-        {
-          fileName, fileSize 
-          //fileName: e.target.files[i].name,
-          //fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
-        }
-      );
-      this.fileInfo = [...toConcatFileInfo]; /*concatenating the 2 array*/
-    } else {
-      alert("error")
+      if (parseInt(fileSize) < 512) {
+        toConcatFileInfo.push(
+          {
+            fileName, fileSize
+            //fileName: e.target.files[i].name,
+            //fileSize: (e.target.files[i].size / 1024).toFixed(2) + "kb"
+          }
+        );
+        this.fileInfo = [...toConcatFileInfo]; /*concatenating the 2 array*/
+      } else if (parseInt(fileSize) > 512) {
+        alert(fileName + "\nError...Please Upload File Size Below 512 Kb..!");
+      }
     }
-  }
     console.log(this.fileInfo);
   }
 
@@ -231,6 +232,10 @@ export class QueryRaisingComponent implements OnInit {
     var FileToRemove = this.fileInfo;
     FileToRemove.splice(selectedValue, 1);
     this.fileInfo = [...FileToRemove];
+  }
+
+  afterClose(): void {
+    console.log('close');
   }
 
 }
