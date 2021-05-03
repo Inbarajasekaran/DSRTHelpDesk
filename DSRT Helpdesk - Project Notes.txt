@@ -1,0 +1,28 @@
+DSRT Helpdesk
+-------------
+
+Ticket
+    1) Ticket Applier
+    2) Ticket Type -> Request OR Incident
+    3) Ticket Cateogry -> (eg : ID Card Request, Credentials.... etc)
+    4) Ticket SubCategory -> (eg: Email Credentials Reset, FXCAMS Credentials Reset)
+    5) Ticket Comment
+    6) Ticket Attachments (Multiple Attachments -> each file should less than 512Kb)
+    7) Ticket Status -> 
+        Pending / Open :: (Initially ticket goes to Open Status. And the End User will receive the status as Pending)
+        Assigned :: Once assigned to user
+        In Process :: 
+        Closed :: 
+        Unresolved ::
+
+END USER : (STUDENT / STAFF)
+    1) Able to Raise a Ticket
+    2) Able to track the ticket
+    3) Able to View all the History of tickets applied by own
+
+END USER : ( ADMIN )
+    1) Able to receive tickets
+    2) Able to assign tickets
+    3) Able to follow up tickets
+    4) Able to change the status of tickets
+    5) Able to view all the History
