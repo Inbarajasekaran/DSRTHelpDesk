@@ -6,9 +6,11 @@ import { Injectable } from '@angular/core';
 export class ApiServiceService {
 
   ISSUE_STATUS = [
-    { STATUS_ID: 1, STATUS: 'Pending' },
-    { STATUS_ID: 2, STATUS: 'Processing' },
-    { STATUS_ID: 3, STATUS: 'Completed' }
+    { STATUS_ID: 1, STATUS: 'Pending / Open' },
+    { STATUS_ID: 2, STATUS: 'Assigned' },
+    { STATUS_ID: 3, STATUS: 'In Process' },
+    { STATUS_ID: 4, STATUS: 'Closed' },
+    { STATUS_ID: 5, STATUS: 'Unresolved' }
   ];
 
   constructor() { }
@@ -16,9 +18,17 @@ export class ApiServiceService {
   issues = [
     {
       userid: undefined,
+      issueid: 1,
       issue: "ISSUE NAME 1",
       status: this.ISSUE_STATUS[0].STATUS,
-      fileInfo: []
+      fileInfo: ["E:\test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for u"]
+    },
+    {
+      userid: undefined,
+      issueid: 2,
+      issue: "ISSUE NAME 2",
+      status: this.ISSUE_STATUS[4].STATUS,
+      fileInfo: ["E:\test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for u"]
     },
   ]
 

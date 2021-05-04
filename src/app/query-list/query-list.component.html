@@ -15,38 +15,46 @@ padding: 15px; pointer-events: all !important">
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="getIssueDetails(i)" *ngFor="let data of headerTable.data; let i = index">
+                <tr (click)="getIssueDetails(data)" *ngFor="let data of headerTable.data; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>{{ data.issue }}</td>
                     <td>{{ data.status }}</td>
                 </tr>
 
                 <div>
-                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" nzOkText="Ok" nzCancelText="Cancel"
-                        (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" (nzOnCancel)="handleCancel()"
+                        [nzFooter]="modalFooter">
                         <ng-container *nzModalContent>
-                            <!-- <div *ngFor="let data of headerTable.data;">
-                                <p> Issue Name: <b>{{data.issue}} </b><br>
-                                    Issue Status: <b>{{data.status}}</b> <br>
-                                    <span style="text-decoration: underline;"> File Information: </span> <br>
-                                    <span *ngFor="let fileData of data.fileInfo; let selectedIssue = index;">
-                                        File Name: <b>{{fileData.fileName}}</b>,
-                                        File Size:<b>{{fileData.fileSize}}</b>
-                                        <br>
-                                    </span>
-                                </p>
-                                <hr><br>
-                            </div> -->
-                            Issue Name: <b>{{issueName}}</b>
+                            Issue Name: <b>{{dataForModal.issue}}</b>
                             <br>
-                            Issue Status: <b>{{issueStatus}}</b>
-                            <div *ngFor="let fileDetails of fileInformation; let val = index" style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
+                            <input nz-input style="width:50%" placeholder="Issue Name" *ngIf="show"
+                                [(ngModel)]="issueName" />
+                            <br>
+                            Issue Status: <b>{{dataForModal.status}}</b>
+                            <br>
+                           <nz-select style="width:50%" ngModel="listOfIssueStatus" *ngIf="show">
+                                <nz-option *ngFor="let loop of listOfIssueStatus; let i = index" [nzValue]="loop.STATUS"
+                                    [nzLabel]="loop.STATUS"></nz-option>
+                            </nz-select>
+                            <div *ngFor="let fileDetails of fileInformation; let val = index"
+                                style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
                                 File Name: <b>{{fileInformation[val].fileName}}</b>
                                 <br>
                                 File Size:<b>{{fileInformation[val].fileSize}}</b>
                                 <br>
                             </div>
                         </ng-container>
+                        <ng-template #modalFooter>
+                            <button nz-button nzType="default" (click)="editIssue()">
+                                <i style="padding:4px;" nz-icon nzType="edit" nzTheme="fill"></i>
+                            </button>
+                            <button nz-button nzType="default" (click)="handleCancel()">
+                                Cancel
+                            </button>
+                            <button nz-button nzType="primary" (click)="handleOk(dataForModal)" [nzLoading]="isConfirmLoading">
+                                Submit
+                            </button>
+                        </ng-template>
                     </nz-modal>
                 </div>
             </tbody>

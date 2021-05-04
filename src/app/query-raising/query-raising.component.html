@@ -35,7 +35,7 @@
             <button class="ant-btn-round ant-row-center" nz-button style="margin-top:45px;" nzType="primary"
                 [disabled]="validateForm.invalid" nzSize="large" (click)="raiseIssue()">Raise Issue</button>
 
-            <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
+            <nz-modal [nzStyle]="{ top: '5vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
                 [nzOkLoading]="spinOnClick" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
                 <form nz-form [formGroup]="modalForm">
@@ -55,7 +55,7 @@
                                 <i style="color: rgb(89, 168, 69); font-size: 32px;" nz-icon nzType="file-add"
                                     nzTheme="fill" (click)="inputFile.click()">
                                     <input type="file" style="display:none;" (change)="getFileDetails($event)" multiple
-                                        #inputFile>
+                                        formControlName="attachImage" #inputFile>
                                 </i>
 
                                 <div style="margin-top:15px; border:2px solid #84bfff;">
@@ -72,7 +72,7 @@
                                             <tr *ngFor="let getFileInfo of fileUploadTable.data; let sno = index;">
                                                 <td style="max-width: 25px;">{{sno+1}}</td>
                                                 <td style="max-width: 25px;">{{getFileInfo.fileName}}</td>
-                                                <td style="max-width: 25px;">{{getFileInfo.fileSize}}</td>
+                                                <td style="max-width: 25px;">{{getFileInfo.fileSize}} Kb</td>
                                                 <td>
                                                     <i nz-icon style="color: red; font-size: 18px;" nzType="delete"
                                                         nzTheme="fill" (click)="removeFile(sno)"></i>
@@ -81,6 +81,7 @@
                                         </tbody>
                                     </nz-table>
                                 </div>
+
                             </div>
                         </nz-form-control>
                     </nz-form-item>

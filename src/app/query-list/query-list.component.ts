@@ -10,56 +10,60 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class QueryListComponent implements OnInit {
 
   isVisible = false;
+  show = false;
   fileInformation;
   issueName;
   issueStatus;
+  dataForModal;
+  listOfIssueStatus = [];
 
   constructor(private apiService: ApiServiceService, private modalService: NzModalService) { }
 
   dataSet = [];
 
-  // dataSet = [
-  //   {
-  //     issue: 32,
-  //     status: this.status
-  //   },
-  //   {
-  //     issue: 42,
-  //     status: this.status
-  //   },
-  //   {
-  //     issue: 32,
-  //     status: this.status
-  //   }
-  // ];
-
   ngOnInit(): void {
     this.dataGet();
+    for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
+      this.listOfIssueStatus.push(this.apiService.ISSUE_STATUS[i])
+    }
+    console.log(this.listOfIssueStatus)
   }
 
   dataGet() {
     this.dataSet = this.apiService.issues;
     // console.log(this.dataSet)
   }
-  getIssueDetails(i) {
+
+  getIssueDetails(data) {
     this.isVisible = true;
-    this.issueName = this.apiService.issues[i]['issue'];
-    console.log(this.issueName)
-    this.issueStatus = this.apiService.issues[i]['status'];
-    this.fileInformation = this.apiService.issues[i]['fileInfo'];
-    console.log(this.fileInformation)
-    // alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
+    this.dataForModal = data;
   }
 
-  // showModal(): void {
-  //   this.isVisible = true;
-  // }
+  editIssue() {
+    this.show = true;
+  }
 
-  handleOk(): void {
+  handleOk(dataForModal): void {
+    for (let i = 0; i < this.apiService.issues.length; i++) {
+      if (dataForModal['issueid'] == this.apiService.issues[i]['issueid']) {
+        this.apiService.issues[i]['issue'] = this.issueName;
+      }
+    }
+
+    for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
+      if (this.apiService.ISSUE_STATUS[i]['STATUS'] == this.dataForModal['status'])
+        // this.issueStatus = this.listOfIssueStatus[i]['STATUS']
+        this.apiService.ISSUE_STATUS[i]['STATUS'] = this.issueStatus
+    }
+    console.log(this.issueStatus);
+    // this.issueName = "" /* CLEARING THE VALUE WHILE THIS FUNCTION CALL */
+    this.show = false;
     this.isVisible = false;
+    //console.log(this.apiService.ISSUE_STATUS[3]['STATUS'])
   }
 
   handleCancel(): void {
+    this.show = false;
     this.isVisible = false;
   }
 
