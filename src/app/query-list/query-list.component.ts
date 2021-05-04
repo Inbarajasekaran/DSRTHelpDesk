@@ -33,7 +33,7 @@ export class QueryListComponent implements OnInit {
     this.dataSet = this.apiService.issues;
     // console.log(this.dataSet)
   }
-  
+
   getIssueDetails(data) {
     this.isVisible = true;
     this.dataForModal = data;
@@ -49,10 +49,17 @@ export class QueryListComponent implements OnInit {
         this.apiService.issues[i]['issue'] = this.issueName;
       }
     }
-    this.issueStatus = this.listOfIssueStatus
+
+    for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
+      if (this.apiService.ISSUE_STATUS[i]['STATUS'] == this.dataForModal['status'])
+        // this.issueStatus = this.listOfIssueStatus[i]['STATUS']
+        this.apiService.ISSUE_STATUS[i]['STATUS'] = this.issueStatus
+    }
+    console.log(this.issueStatus);
     // this.issueName = "" /* CLEARING THE VALUE WHILE THIS FUNCTION CALL */
-    this.show = false; 
+    this.show = false;
     this.isVisible = false;
+    //console.log(this.apiService.ISSUE_STATUS[3]['STATUS'])
   }
 
   handleCancel(): void {

@@ -27,7 +27,7 @@ export class ApiServiceService {
       userid: undefined,
       issueid: 2,
       issue: "ISSUE NAME 2",
-      status: this.ISSUE_STATUS[0].STATUS,
+      status: this.ISSUE_STATUS[4].STATUS,
       fileInfo: ["E:\test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for u"]
     },
   ]
