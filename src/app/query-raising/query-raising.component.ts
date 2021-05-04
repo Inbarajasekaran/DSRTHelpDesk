@@ -237,4 +237,5 @@ export class QueryRaisingComponent implements OnInit {
   afterClose(): void {
     console.log('close');
   }
+  
 }
