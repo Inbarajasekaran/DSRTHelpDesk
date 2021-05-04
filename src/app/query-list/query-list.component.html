@@ -25,18 +25,6 @@ padding: 15px; pointer-events: all !important">
                     <nz-modal [(nzVisible)]="isVisible" nzTitle="Issue Details" (nzOnCancel)="handleCancel()"
                         [nzFooter]="modalFooter">
                         <ng-container *nzModalContent>
-                            <!-- <div *ngFor="let data of headerTable.data;">
-                                <p> Issue Name: <b>{{data.issue}} </b><br>
-                                    Issue Status: <b>{{data.status}}</b> <br>
-                                    <span style="text-decoration: underline;"> File Information: </span> <br>
-                                    <span *ngFor="let fileData of data.fileInfo; let selectedIssue = index;">
-                                        File Name: <b>{{fileData.fileName}}</b>,
-                                        File Size:<b>{{fileData.fileSize}}</b>
-                                        <br>
-                                    </span>
-                                </p>
-                                <hr><br>
-                            </div> -->
                             Issue Name: <b>{{dataForModal.issue}}</b>
                             <br>
                             <input nz-input style="width:50%" placeholder="Issue Name" *ngIf="show"
@@ -44,8 +32,7 @@ padding: 15px; pointer-events: all !important">
                             <br>
                             Issue Status: <b>{{dataForModal.status}}</b>
                             <br>
-                            <!-- <ul *ngFor="let loop of listOfIssueStatus;"><li *ngIf="show" >{{loop.STATUS}}</li></ul> -->
-                            <nz-select style="width:50%" ngModel="listOfIssueStatus" *ngIf="show">
+                           <nz-select style="width:50%" ngModel="listOfIssueStatus" *ngIf="show">
                                 <nz-option *ngFor="let loop of listOfIssueStatus; let i = index" [nzValue]="loop.STATUS"
                                     [nzLabel]="loop.STATUS"></nz-option>
                             </nz-select>

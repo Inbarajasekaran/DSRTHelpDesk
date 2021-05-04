@@ -35,7 +35,7 @@
             <button class="ant-btn-round ant-row-center" nz-button style="margin-top:45px;" nzType="primary"
                 [disabled]="validateForm.invalid" nzSize="large" (click)="raiseIssue()">Raise Issue</button>
 
-            <nz-modal [nzStyle]="{ top: '25vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
+            <nz-modal [nzStyle]="{ top: '5vh' }" [(nzVisible)]="modalVisible" nzTitle="Comment Your Issue"
                 [nzOkLoading]="spinOnClick" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
                 <form nz-form [formGroup]="modalForm">

@@ -21,21 +21,6 @@ export class QueryListComponent implements OnInit {
 
   dataSet = [];
 
-  // dataSet = [
-  //   {
-  //     issue: 32,
-  //     status: this.status
-  //   },
-  //   {
-  //     issue: 42,
-  //     status: this.status
-  //   },
-  //   {
-  //     issue: 32,
-  //     status: this.status
-  //   }
-  // ];
-
   ngOnInit(): void {
     this.dataGet();
     for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
@@ -48,38 +33,25 @@ export class QueryListComponent implements OnInit {
     this.dataSet = this.apiService.issues;
     // console.log(this.dataSet)
   }
+  
   getIssueDetails(data) {
     this.isVisible = true;
     this.dataForModal = data;
-    // this.issueName = this.apiService.issues[dataForModal]['issue'];
-    // console.log(this.issueName)
-    // this.issueStatus = this.apiService.issues[dataForModal]['status'];
-    // console.log(this.issueStatus)
-    // this.fileInformation = this.apiService.issues[dataForModal]['fileInfo'];
-    // console.log(this.fileInformation)
-    // alert ("Your Issue is: " + data.issue + " " + "and status is: " + data.status)
   }
-
-  // showModal(): void {
-  //   this.isVisible = true;
-  // }
 
   editIssue() {
     this.show = true;
   }
 
   handleOk(dataForModal): void {
-    // for (let i = 0; i < this.apiService.issues.length; i++) {
-    //   this.apiService.issues[i]['issue'] = this.issueName;
-    // }
     for (let i = 0; i < this.apiService.issues.length; i++) {
       if (dataForModal['issueid'] == this.apiService.issues[i]['issueid']) {
         this.apiService.issues[i]['issue'] = this.issueName;
       }
     }
     this.issueStatus = this.listOfIssueStatus
-    this.issueName = ""
-    this.show = false;
+    // this.issueName = "" /* CLEARING THE VALUE WHILE THIS FUNCTION CALL */
+    this.show = false; 
     this.isVisible = false;
   }
 
