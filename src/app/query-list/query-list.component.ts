@@ -16,8 +16,11 @@ export class QueryListComponent implements OnInit {
   issueStatus;
   dataForModal;
   listOfIssueStatus = [];
+  issueStatusAssign = false
+  members = ["Jothiram" , "Prem Kumar", "Saravana Mariappan", "Mathan Ganesh", "Inba Rajasekaran"]
+  issueAssignedTo;
 
-  constructor(private apiService: ApiServiceService, private modalService: NzModalService) { }
+  constructor(private apiService: ApiServiceService, private modalService: NzModalService) {  }
 
   dataSet = [];
 
@@ -26,12 +29,10 @@ export class QueryListComponent implements OnInit {
     for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
       this.listOfIssueStatus.push(this.apiService.ISSUE_STATUS[i])
     }
-    console.log(this.listOfIssueStatus)
   }
 
   dataGet() {
     this.dataSet = this.apiService.issues;
-    // console.log(this.dataSet)
   }
 
   getIssueDetails(data) {
@@ -57,16 +58,17 @@ export class QueryListComponent implements OnInit {
         // this.apiService.ISSUE_STATUS[i]['STATUS'] = this.issueStatus
       }
     }
-    console.log(this.issueStatus);
     // this.issueName = "" /* CLEARING THE VALUE WHILE THIS FUNCTION CALL */
     this.show = false;
     this.isVisible = false;
-    //console.log(this.apiService.ISSUE_STATUS[3]['STATUS'])
+    this.issueStatus = this.issueStatusAssign;
   }
 
   handleCancel(): void {
     this.show = false;
     this.isVisible = false;
+    this.issueStatus = this.issueStatusAssign;
+    this.issueAssignedTo = null
   }
 
   showConfirm(): void {

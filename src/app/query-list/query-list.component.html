@@ -18,7 +18,12 @@ padding: 15px; pointer-events: all !important">
                 <tr (click)="getIssueDetails(data)" *ngFor="let data of headerTable.data; let i = index">
                     <td>{{ i+1 }}</td>
                     <td>{{ data.issue }}</td>
-                    <td>{{ data.status }}</td>
+                    <td>{{ data.status }}
+                        <span *ngIf="data.status == 'Assigned'">
+                            <!--SYMBOL(--> <span>&#40;</span>{{issueAssignedTo}}<span>&#41;</span>
+                            <!--SYMBOL)-->
+                        </span>
+                    </td>
                 </tr>
 
                 <div>
@@ -27,15 +32,23 @@ padding: 15px; pointer-events: all !important">
                         <ng-container *nzModalContent>
                             Issue Name: <b>{{dataForModal.issue}}</b>
                             <br>
-                            <input nz-input style="width:50%" placeholder="Issue Name" *ngIf="show"
-                                [(ngModel)]="issueName" />
+                            <textarea rows="3" nz-input style="width:70%" placeholder="Issue Name" *ngIf="show"
+                                [(ngModel)]="issueName"></textarea>
                             <br>
                             Issue Status: <b>{{dataForModal.status}}</b>
                             <br>
-                           <nz-select style="width:50%" [(ngModel)]="issueStatus" *ngIf="show">
+                            <nz-select style="width:70%" [(ngModel)]="issueStatus" *ngIf="show">
                                 <nz-option *ngFor="let loop of listOfIssueStatus; let i = index" [nzValue]="loop.STATUS"
                                     [nzLabel]="loop.STATUS" ngDefaultControl ngModel="listOfIssueStatus"></nz-option>
                             </nz-select>
+                            <div *ngIf="issueStatus == 'Assigned'">
+                                Assign To: <br>
+                                <nz-select style="width:70%" [(ngModel)]="issueAssignedTo">
+                                    <nz-option *ngFor="let getMember of members" [nzValue]="getMember"
+                                        [nzLabel]="getMember">
+                                    </nz-option>
+                                </nz-select>
+                            </div>
                             <div *ngFor="let fileDetails of fileInformation; let val = index"
                                 style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
                                 File Name: <b>{{fileInformation[val].fileName}}</b>
@@ -51,7 +64,8 @@ padding: 15px; pointer-events: all !important">
                             <button nz-button nzType="default" (click)="handleCancel()">
                                 Cancel
                             </button>
-                            <button nz-button nzType="primary" (click)="handleOk(dataForModal)" [nzLoading]="isConfirmLoading">
+                            <button nz-button nzType="primary" (click)="handleOk(dataForModal)"
+                                [nzLoading]="isConfirmLoading">
                                 Submit
                             </button>
                         </ng-template>

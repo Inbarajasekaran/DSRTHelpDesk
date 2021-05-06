@@ -120,14 +120,11 @@ export class QueryRaisingComponent implements OnInit {
   getMasterOption() {
     this.dataSetMasterTitle = []
     this.validateForm.controls.masterTitle.setValue(null);
-    //console.log(this.validateForm.controls.ticketType.value);
     for (const variable of this.dataSet) {
       if (this.validateForm.controls.ticketType.value == variable['type']) {
-        // console.log(variable);
         this.dataSetMasterTitle.push(variable)
       }
     }
-    //console.log(this.dataSetMasterTitle);
   }
 
   getMasterSubTitle() {
@@ -138,7 +135,6 @@ export class QueryRaisingComponent implements OnInit {
         this.dataSetSubTitle = data['subTitles']
       }
     }
-    //console.log(this.dataSetSubTitle);
   }
 
   raiseIssue() {
@@ -184,12 +180,6 @@ export class QueryRaisingComponent implements OnInit {
       this.modalVisible = false;
       this.modalForm.reset();
     }
-
-    // console.log(this.image)
-
-    console.log(this.apiService.issues);
-    // console.log(this.modalForm.controls.issueComment.value);
-    //console.log(this.apiService.issues)
     this.validateForm.reset();
   }
 
@@ -199,13 +189,8 @@ export class QueryRaisingComponent implements OnInit {
     this.modalVisible = false;
   }
 
-  // submitModal() {
-  //   console.log("SUBMIT");
-  // }
-
   getFileDetails(e) {
     let toConcatFileInfo = this.fileInfo; /*pushing value to array is not working so new variable added and assigned where the data to be add*/
-    //console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
       let fileName = e.target.files[i].name
       let fileSize = (e.target.files[i].size / 1024).toFixed(2)
