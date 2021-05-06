@@ -45,15 +45,17 @@ export class QueryListComponent implements OnInit {
 
   handleOk(dataForModal): void {
     for (let i = 0; i < this.apiService.issues.length; i++) {
-      if (dataForModal['issueid'] == this.apiService.issues[i]['issueid']) {
+      if (dataForModal.issueid == this.apiService.issues[i]['issueid']) {
         this.apiService.issues[i]['issue'] = this.issueName;
       }
     }
 
     for (let i = 0; i < this.apiService.ISSUE_STATUS.length; i++) {
-      if (this.apiService.ISSUE_STATUS[i]['STATUS'] == this.dataForModal['status'])
-        // this.issueStatus = this.listOfIssueStatus[i]['STATUS']
-        this.apiService.ISSUE_STATUS[i]['STATUS'] = this.issueStatus
+      if (this.apiService.ISSUE_STATUS[i]['STATUS'] == this.issueStatus){
+        this.issueStatus = this.listOfIssueStatus[i]['STATUS']
+        this.dataForModal.status = this.issueStatus
+        // this.apiService.ISSUE_STATUS[i]['STATUS'] = this.issueStatus
+      }
     }
     console.log(this.issueStatus);
     // this.issueName = "" /* CLEARING THE VALUE WHILE THIS FUNCTION CALL */

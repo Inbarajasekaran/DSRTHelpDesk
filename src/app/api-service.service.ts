@@ -20,14 +20,14 @@ export class ApiServiceService {
       userid: undefined,
       issueid: 1,
       issue: "ISSUE NAME 1",
-      status: this.ISSUE_STATUS[0].STATUS,
+      status: undefined,
       fileInfo: ["E:\test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for u"]
     },
     {
       userid: undefined,
       issueid: 2,
       issue: "ISSUE NAME 2",
-      status: this.ISSUE_STATUS[4].STATUS,
+      status: undefined,
       fileInfo: ["E:\test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for upload file in DSRT HELP DESK test file for u"]
     },
   ]

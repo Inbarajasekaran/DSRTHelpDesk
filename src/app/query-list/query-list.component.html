@@ -32,9 +32,9 @@ padding: 15px; pointer-events: all !important">
                             <br>
                             Issue Status: <b>{{dataForModal.status}}</b>
                             <br>
-                           <nz-select style="width:50%" ngModel="listOfIssueStatus" *ngIf="show">
+                           <nz-select style="width:50%" [(ngModel)]="issueStatus" *ngIf="show">
                                 <nz-option *ngFor="let loop of listOfIssueStatus; let i = index" [nzValue]="loop.STATUS"
-                                    [nzLabel]="loop.STATUS"></nz-option>
+                                    [nzLabel]="loop.STATUS" ngDefaultControl ngModel="listOfIssueStatus"></nz-option>
                             </nz-select>
                             <div *ngFor="let fileDetails of fileInformation; let val = index"
                                 style="margin-top: 10px; padding:20px; background-color: rgb(240, 240, 240);">
